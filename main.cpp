@@ -1,4 +1,4 @@
-#include "RecordManage.h"
+#include "RecordInterfaceFactory.h"
 
 int main()
 {
