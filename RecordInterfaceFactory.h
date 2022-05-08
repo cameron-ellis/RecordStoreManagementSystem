@@ -3,14 +3,14 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include "Interface.h"
+#include "Inventory.h"
 #include "Customer.h"
 #include "Employee.h"
 
 class RecordInterfaceFactory
 {
     public:
-        RecordInterfaceFactory() {};
+        RecordInterfaceFactory();
 
         // Employee Interface Constructor
         Employee* CreateEmployeeInterface();
@@ -19,7 +19,7 @@ class RecordInterfaceFactory
         Customer* CreateCustomerInterface();
 
         // Interface deletion method
-        void deleteInterface(Interface *interface);
+        void deleteInterface(Inventory *inventory);
 };
 
 #endif

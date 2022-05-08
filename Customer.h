@@ -1,25 +1,14 @@
 #ifndef CUSTOMER_H
 #define CUSTOMER_H
-#include "Interface.h"
+#include "Inventory.h"
 
-class Customer : public Interface
+class Customer : public Inventory
 {
-private:
-    /* data */
-public:
-    Customer(/* args */);
-    ~Customer();
+    private:
+        /* data */
+    public:
+        Customer(/* args */);
+        ~Customer();
 };
-
-Customer::Customer(/* args */)
-{
-}
-
-Customer::~Customer()
-{
-}
-
-
-
 
 #endif
