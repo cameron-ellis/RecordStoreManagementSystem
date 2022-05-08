@@ -9,8 +9,17 @@ Inventory::~Inventory(){
 
 }
 
-void Inventory::searchInventory(std::string artist_name, std::string album_title){
+void Inventory::searchInventory(std::string album_title){
+    auto temp = this->Inv_.find(album_title);
 
+    if(temp != this->Inv_.end()){
+        std::cout << "Album: " << album_title << std::endl;
+        std::cout << "Artist: " << temp->value("artist","false") << std::endl;
+        std::cout << "Price: " << temp->value("unit_price",0) << std::endl;
+        std::cout << "Quantity: " << temp->value("num_units",0) << std::endl;
+    }else{
+        std::cout << "Album not found." << std::endl;
+    }
 }
 
 void Inventory::printInventory(){
@@ -35,6 +44,15 @@ void Inventory::importInventory(){
 
 //Save inventory.
 void Inventory::exportInventory(){
-    std::ofstream f("Inventory.json");
-    f << std::setw(4) << this->Inv_ << std::endl;
+    try{
+        std::ofstream f("Inventory.json");
+        if(f){
+            f << std::setw(4) << this->Inv_ << std::endl;
+        }else{
+            throw "Error: Could not open Inventory file to export.";
+        }
+    }
+    catch(const char* message){
+        std::cerr << message << std::endl;
+    }
 }

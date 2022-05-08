@@ -13,7 +13,7 @@ class Inventory
         Inventory();
         virtual ~Inventory();
         virtual void printInventory();//
-        void searchInventory(std::string artist_name, std::string album_title);//
+        void searchInventory(std::string album_title);
         void addInventory(std::string,std::string,float,int);
         void importInventory();
         void exportInventory();
