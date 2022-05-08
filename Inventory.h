@@ -11,16 +11,20 @@ using json = nlohmann::json;
 class Inventory
 {
     public:
-        Inventory();
-        virtual ~Inventory();
-        virtual void printInventory();//
+        static Inventory* getInventory();
+        void deleteInventory();
+        virtual void printInventory();
         void searchInventory(std::string album_title);
         void addInventory(std::string,std::string,float,int);
         void importInventory();
         void exportInventory();
         void printInventoryItem(nlohmann::basic_json<>::iter_impl<nlohmann::basic_json<> >&);
     private:
+        Inventory();
+        virtual ~Inventory();
+        static Inventory *instance_;
         json Inv_;
+        static int Inv_count;
 };
 
 #endif

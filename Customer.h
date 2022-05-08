@@ -2,7 +2,7 @@
 #define CUSTOMER_H
 #include "Inventory.h"
 
-class Customer : public Inventory
+class Customer// : public Inventory
 {
     private:
         /* data */

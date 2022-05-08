@@ -19,7 +19,7 @@ class RecordInterfaceFactory
         Customer* CreateCustomerInterface();
 
         // Interface deletion method
-        void deleteInterface(Inventory *inventory);
+        void deleteInterface(Inventory *interface);
 };
 
 #endif

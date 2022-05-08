@@ -1,5 +1,8 @@
 #include "Inventory.h"
 
+Inventory *Inventory::instance_ = NULL;
+int Inventory::Inv_count = 0;
+
 //Default constructor for inventory. Will auto populate inventory on creation.
 Inventory::Inventory(){
     std::cout << "Loading Inventory." << std::endl;
@@ -10,6 +13,25 @@ Inventory::Inventory(){
 Inventory::~Inventory(){
     std::cout << "Saving Inventory." << std::endl;
     this->exportInventory();
+}
+
+//Function used to delete inventory instances.
+void Inventory::deleteInventory(){
+    std::cout << "INV_COUNT: " << this->Inv_count << std::endl;
+    this->Inv_count--;
+    std::cout << "INV_COUNT: " << this->Inv_count << std::endl;
+    if(Inv_count==0){
+        delete this;
+    }  
+}
+
+//Returns the current instance of the Inventory.
+Inventory* Inventory::getInventory(){
+    if(!instance_) {
+		instance_ = new Inventory();
+	}
+    Inv_count++;
+	return instance_;
 }
 
 //Passed an album title as a string. Searches the inventory for the specific album, and prints the contents.

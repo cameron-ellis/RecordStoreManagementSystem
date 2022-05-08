@@ -2,7 +2,7 @@
 #define EMPLOYEE_H
 #include "Inventory.h"
 
-class Employee : public Inventory
+class Employee// : public Inventory
 {
     private:
         /* data */
