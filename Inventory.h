@@ -4,6 +4,7 @@
 #include <string>
 #include <fstream>
 #include <nlohmann/json.hpp>
+#include <iomanip>
 
 using json = nlohmann::json;
 
@@ -17,6 +18,7 @@ class Inventory
         void addInventory(std::string,std::string,float,int);
         void importInventory();
         void exportInventory();
+        void printInventoryItem(nlohmann::basic_json<>::iter_impl<nlohmann::basic_json<> >&);
     private:
         json Inv_;
 };
