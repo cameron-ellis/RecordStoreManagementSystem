@@ -17,9 +17,7 @@ Inventory::~Inventory(){
 
 //Function used to delete inventory instances.
 void Inventory::deleteInventory(){
-    std::cout << "INV_COUNT: " << this->Inv_count << std::endl;
     this->Inv_count--;
-    std::cout << "INV_COUNT: " << this->Inv_count << std::endl;
     if(Inv_count==0){
         delete this;
     }  
@@ -64,8 +62,19 @@ void Inventory::printInventoryItem(nlohmann::basic_json<>::iter_impl<nlohmann::b
 
 //Parameters: Album TItle (string), Artist (string), price (flaot), number of units (int)
 //Will add the item to the inventory. 
-void Inventory::addInventory(std::string albumTitle, std::string Artist, float price, int numUnits){
+void Inventory::addToInventory(std::string albumTitle, std::string Artist, float price, int numUnits){
     Inv_[albumTitle] = { {"artist",Artist}, {"unit_price",price}, {"num_units",numUnits} };
+}
+
+void Inventory::deleteFromInventory(std::string albumTitle){
+    auto temp = this->Inv_.erase(this->Inv_.find(albumTitle));
+    if(temp!=this->Inv_.end()){
+        std::cout << "Item \"" << albumTitle << "\" has been deleted.\n" << std::endl;
+    }else if(temp==this->Inv_.end()){
+        std::cout << "Could not find item \"" << albumTitle << "\".\n" << std::endl;
+    }else{
+        std::cout << "Error: An unknown error has occured." << std::endl;
+    }
 }
 
 //Loads inventory.

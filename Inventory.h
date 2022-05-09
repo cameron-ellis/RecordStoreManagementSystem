@@ -15,7 +15,8 @@ class Inventory
         void deleteInventory();
         virtual void printInventory();
         void searchInventory(std::string album_title);
-        void addInventory(std::string,std::string,float,int);
+        void addToInventory(std::string,std::string,float,int);
+        void deleteFromInventory(std::string);
         void importInventory();
         void exportInventory();
         void printInventoryItem(nlohmann::basic_json<>::iter_impl<nlohmann::basic_json<> >&);
