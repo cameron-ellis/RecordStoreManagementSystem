@@ -23,7 +23,7 @@ void Inventory::deleteInventory(){
     }  
 }
 
-//Returns the current instance of the Inventory.
+//Returns the current instance of the Inventory, as in Inventory pointer.
 Inventory* Inventory::getInventory(){
     if(!instance_) {
 		instance_ = new Inventory();
@@ -32,8 +32,8 @@ Inventory* Inventory::getInventory(){
 	return instance_;
 }
 
-//Passed an album title as a string. Searches the inventory for the specific album, and prints the contents.
-//If no album is found with a matching name, will print that it was not found.
+//Parameters: Album title (string).
+//Searches the inventory for the specific album, and prints the contents, if found.
 void Inventory::searchInventory(std::string album_title){
     auto temp = this->Inv_.find(album_title);
     this->printInventoryItem(temp);
@@ -46,9 +46,9 @@ void Inventory::printInventory(){
         std::cout << "\n";
     }
 }
-
-
-//Passed a json iterator pointing to an album. Will print out the values of the album the iterator is pointing to.
+ 
+//Parameter: json Iterator pointing to an album.
+//Will print out the values of the album the iterator is pointing to.
 void Inventory::printInventoryItem(nlohmann::basic_json<>::iter_impl<nlohmann::basic_json<> >& temp){
     if(temp != this->Inv_.end()){
         std::cout << "Album: " << temp.key() << std::endl;
@@ -60,12 +60,14 @@ void Inventory::printInventoryItem(nlohmann::basic_json<>::iter_impl<nlohmann::b
     }
 }
 
-//Parameters: Album TItle (string), Artist (string), price (flaot), number of units (int)
+//Parameters: Album Title (string), Artist (string), price (flaot), number of units (int)
 //Will add the item to the inventory. 
 void Inventory::addToInventory(std::string albumTitle, std::string Artist, float price, int numUnits){
     Inv_[albumTitle] = { {"artist",Artist}, {"unit_price",price}, {"num_units",numUnits} };
 }
 
+//Parameter: Album title to delete (string)
+//Searches the inventory and deletes the item if found.
 void Inventory::deleteFromInventory(std::string albumTitle){
     auto temp = this->Inv_.erase(this->Inv_.find(albumTitle));
     if(temp!=this->Inv_.end()){
@@ -77,7 +79,7 @@ void Inventory::deleteFromInventory(std::string albumTitle){
     }
 }
 
-//Loads inventory.
+//Loads inventory. Called in constructor.
 void Inventory::importInventory(){
     std::ifstream f("Inventory.json");
     if(f){
@@ -87,7 +89,7 @@ void Inventory::importInventory(){
     }
 }
 
-//Save inventory.
+//Saves inventory. Called in destructor.
 void Inventory::exportInventory(){
     try{
         std::ofstream f("Inventory.json");
