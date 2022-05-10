@@ -2,17 +2,11 @@
 #define CUSTOMER_H
 #include "Interface.h"
 
-struct shoppingCart
-{
-    albumInfo_ item;
-    albumInfo_ *next;
-};
-
 class Customer : public Interface
 {
     private:
         Inventory *inv = nullptr;
-        shoppingCart *cart = nullptr;
+        std::vector<albumInfo_> shoppingCart;
     public:
         // Constructors
         Customer();
