@@ -19,7 +19,7 @@ class Inventory
         void deleteFromInventory(std::string);
         void importInventory();
         void exportInventory();
-        void printInventoryItem(nlohmann::basic_json<>::iter_impl<nlohmann::basic_json<> >&);
+        void printInventoryItem(nlohmann::detail::iter_impl<nlohmann::basic_json<> >);
     private:
         Inventory();
         virtual ~Inventory();

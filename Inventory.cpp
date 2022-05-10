@@ -49,7 +49,7 @@ void Inventory::printInventory(){
  
 //Parameter: json Iterator pointing to an album.
 //Will print out the values of the album the iterator is pointing to.
-void Inventory::printInventoryItem(nlohmann::basic_json<>::iter_impl<nlohmann::basic_json<> >& temp){
+void Inventory::printInventoryItem(nlohmann::detail::iter_impl<nlohmann::basic_json<> > temp){
     if(temp != this->Inv_.end()){
         std::cout << "Album: " << temp.key() << std::endl;
         std::cout << "Artist: " << temp->value("artist","false") << std::endl;
