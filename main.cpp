@@ -26,17 +26,31 @@ int main()
     
     inv2->deleteFromInventory("DeleteMe");
     
+
+    std::cout << "\nInventory Edit checks:\n" << std::endl;
+
     bool check = false;
 
     check = inv->changeQuantity("albtitle1", 2);
-    std::cout << "changeQuntity return value: " << check << "\n\n";
+    std::cout << "changeQuantity return value: " << check << "\n\n";
     check = inv->changeQuantity("albtitle1", -3);
-    std::cout << "changeQuntity return value: " << check << "\n\n";
+    std::cout << "changeQuantity return value: " << check << "\n\n";
     check = inv->changeQuantity("albtitle1", -2);
-    std::cout << "changeQuntity return value: " << check << "\n\n";
+    std::cout << "changeQuantity return value: " << check << "\n\n";
     
     inv->printInventory();
 
+    std::cout << "\n//Udate values:\n" << std::endl;
+
+    inv2->addToInventory("Override","ThisIsWrong",6.66,69);
+    inv->overrideAlbumAttribute("Override", "ThisIsCorrect");
+    inv->overrideAlbumAttribute("Override", (float)29.99);
+    inv->overrideAlbumAttribute("Override", 16);
+
+    inv->overrideAlbumAttribute("Override", -1);
+    inv->overrideAlbumAttribute("This dont Exist", 12);
+
+    inv->printInventory();
 
     std::cout << "\nGet Album info:\n" << std::endl;
 
