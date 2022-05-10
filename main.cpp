@@ -26,9 +26,14 @@ int main()
     
     inv2->deleteFromInventory("DeleteMe");
     
-    inv->changeQuantity("albtitle1", 2);
-    inv->changeQuantity("albtitle1", -3);
-    inv->changeQuantity("albtitle1", -2);
+    bool check = false;
+
+    check = inv->changeQuantity("albtitle1", 2);
+    std::cout << "changeQuntity return value: " << check << "\n\n";
+    check = inv->changeQuantity("albtitle1", -3);
+    std::cout << "changeQuntity return value: " << check << "\n\n";
+    check = inv->changeQuantity("albtitle1", -2);
+    std::cout << "changeQuntity return value: " << check << "\n\n";
     
     inv->printInventory();
 

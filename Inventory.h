@@ -13,17 +13,17 @@ class Inventory
     public:
         static Inventory* getInventory();
         void deleteInventory();
-        virtual void printInventory();
-        void searchInventory(std::string album_title);
-        void addToInventory(std::string,std::string,float,int);
-        void deleteFromInventory(std::string);
-        void changeQuantity(std::string,int);
-        void importInventory();
-        void exportInventory();
-        void printInventoryItem(nlohmann::detail::iter_impl<nlohmann::basic_json<> >);
+        void printInventory();
+        bool searchInventory(std::string album_title);
+        bool addToInventory(std::string,std::string,float,int);
+        bool deleteFromInventory(std::string);
+        bool changeQuantity(std::string,int);
+        bool importInventory();
+        bool exportInventory();
+        bool printInventoryItem(nlohmann::detail::iter_impl<nlohmann::basic_json<> >);
     private:
         Inventory();
-        virtual ~Inventory();
+        ~Inventory();
         static Inventory *instance_;
         json Inv_;
         static int Inv_count;

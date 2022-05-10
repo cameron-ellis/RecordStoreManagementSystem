@@ -34,9 +34,9 @@ Inventory* Inventory::getInventory(){
 
 //Parameters: Album title (string).
 //Searches the inventory for the specific album, and prints the contents, if found.
-void Inventory::searchInventory(std::string album_title){
+bool Inventory::searchInventory(std::string album_title){
     auto temp = this->Inv_.find(album_title);
-    this->printInventoryItem(temp);
+    return this->printInventoryItem(temp);
 }
 
 //Will print the contents of the entire inventory.
@@ -49,40 +49,65 @@ void Inventory::printInventory(){
  
 //Parameter: json Iterator pointing to an album.
 //Will print out the values of the album the iterator is pointing to.
-void Inventory::printInventoryItem(nlohmann::detail::iter_impl<nlohmann::basic_json<> > temp){
+bool Inventory::printInventoryItem(nlohmann::detail::iter_impl<nlohmann::basic_json<> > temp){
     if(temp != this->Inv_.end()){
         std::cout << "Album: " << temp.key() << std::endl;
         std::cout << "Artist: " << temp->value("artist","false") << std::endl;
         std::cout << std::fixed << std::setprecision(2) << "Price: $" << temp->value("unit_price",0.00) << std::endl;
         std::cout << "Quantity: " << temp->value("num_units",0) << std::endl;
+        return true;
     }else{
         std::cout << "Album not found." << std::endl;
+        return false;
     }
 }
 
-//Parameters: Album Title (string), Artist (string), price (flaot), number of units (int)
+//Parameters: Album Title (string), Artist (string), price (float), number of units (int)
 //Will add the item to the inventory. 
-void Inventory::addToInventory(std::string albumTitle, std::string Artist, float price, int numUnits){
-    Inv_[albumTitle] = { {"artist",Artist}, {"unit_price",price}, {"num_units",numUnits} };
+//returns true when successful, or false when it cannot add the item due to it already existing.
+bool Inventory::addToInventory(std::string albumTitle, std::string Artist, float price, int numUnits){
+    try{
+        if(!(this->Inv_.contains(albumTitle))){
+            Inv_[albumTitle] = { {"artist",Artist}, {"unit_price",price}, {"num_units",numUnits} };
+            return true;
+        }else{
+            throw "Album already exists. Cannot add duplicate.";
+        } 
+    }
+    catch(const char* message){
+        std::cerr << message << std::endl;
+        return false;
+    }
 }
 
 //Parameter: Album title to delete (string)
 //Searches the inventory and deletes the item if found.
-void Inventory::deleteFromInventory(std::string albumTitle){
-    auto temp = this->Inv_.erase(this->Inv_.find(albumTitle));
-    if(temp!=this->Inv_.end()){
-        std::cout << "Item \"" << albumTitle << "\" has been deleted.\n" << std::endl;
-    }else if(temp==this->Inv_.end()){
-        std::cout << "Could not find item \"" << albumTitle << "\".\n" << std::endl;
-    }else{
-        std::cout << "Error: An unknown error has occured." << std::endl;
+//returns true when successful, or false when it cannot find the album to delete.
+bool Inventory::deleteFromInventory(std::string albumTitle){
+    try{
+        auto temp = this->Inv_.erase(this->Inv_.find(albumTitle));
+        if(temp!=this->Inv_.end()){
+            std::cout << "Item \"" << albumTitle << "\" has been deleted.\n" << std::endl;
+            return true;
+        }else if(temp==this->Inv_.end()){
+            std::string errS = "Could not find item \"";
+            errS += albumTitle + "\".";
+            throw errS;
+        }else{
+            throw "Error: An unknown error has occured.";
+        }
+    }
+    catch(const char* message){
+        std::cerr << message << std::endl;
+        return false;
     }
 }
 
-//Parameters: Album Title (string), Amount to change inventory amount (int)
-//Will change the amount of units of the specified album.
+//Parameters: Album Title (string), Amount to change inventory count by (int)
+//Will change the amount of units of the specified album by adding the number passed to the current count.
 //If not enough units exists, will error and abort function.
-void Inventory::changeQuantity(std::string album_title,int quantity){
+//returns true when successful, or false when album cannot be found, or when there is not enough stock.
+bool Inventory::changeQuantity(std::string album_title,int quantity){
     try{
         auto temp = this->Inv_.find(album_title);
         if(temp != this->Inv_.end()){
@@ -90,6 +115,7 @@ void Inventory::changeQuantity(std::string album_title,int quantity){
                 json jtemp;
                 jtemp[album_title] = { {"artist",temp->value("artist","false")}, {"unit_price",temp->value("unit_price",0.00)}, {"num_units",temp->value("num_units",0) + quantity} };
                 this->Inv_.update(jtemp);
+                return true;
             }else{
                 std::string errS = "Error: Not enough stock available. No change done. Total stock: ";
                 errS += std::to_string(temp->value("num_units",0));
@@ -101,30 +127,37 @@ void Inventory::changeQuantity(std::string album_title,int quantity){
     }
     catch(const std::range_error& e){
         std::cout << e.what() << std::endl;
+        return false;
     }
 }
 
 //Loads inventory. Called in constructor.
-void Inventory::importInventory(){
+//returns true when successful, or false when it cannot load in inventory. Failing will load an empty json.
+bool Inventory::importInventory(){
     std::ifstream f("Inventory.json");
     if(f){
         f >> this->Inv_;
+        return true;
     }else{
         Inv_.clear();
+        return false;
     }
 }
 
 //Saves inventory. Called in destructor.
-void Inventory::exportInventory(){
+//returns true when successful, or false when it cannot write out inventory.
+bool Inventory::exportInventory(){
     try{
         std::ofstream f("Inventory.json");
         if(f){
             f << std::setw(4) << this->Inv_ << std::endl;
+            return true;
         }else{
             throw "Error: Could not open Inventory file to export.";
         }
     }
     catch(const char* message){
         std::cerr << message << std::endl;
+        return false;
     }
 }
