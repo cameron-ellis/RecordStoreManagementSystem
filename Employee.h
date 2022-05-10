@@ -11,6 +11,9 @@ class Employee : public Interface
         // Constructors
         Employee();
         Employee(Inventory *inventory); // parameterized
+
+        // Set Inventory Function
+        void setInventory(Inventory *inventory);
         
         // Interface Functions
         void searchInventory(std::string albumTitle);

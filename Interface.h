@@ -6,6 +6,7 @@ class Interface
 {
     private:
     public:
+        virtual void setInventory(Inventory *inventory) = 0;
         virtual void searchInventory(std::string albumTitle) = 0;
         virtual void printInventory() = 0;
         virtual void addToInventory(std::string albumTitle, std::string Artist, float price, int numUnits) = 0;

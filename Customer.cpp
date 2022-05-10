@@ -1,9 +1,15 @@
 #include "Customer.h"
 
-// Constructor Implementation
+// Default Constructor
 Customer::Customer(){}
-
+// Parameterized Constructor
 Customer::Customer(Inventory *inventory)
+{
+    this->inv = inventory;
+    this->cart = new shoppingCart;
+}
+// Set Inventory function (if parameterized constructor not used)
+void Customer::setInventory(Inventory *inventory)
 {
     this->inv = inventory;
 }

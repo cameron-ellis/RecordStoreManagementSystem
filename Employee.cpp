@@ -8,6 +8,13 @@ Employee::Employee(Inventory *inventory)
     this->inv = inventory;
 }
 
+// Set Inventory function (if parameterized constructor not used)
+void Employee::setInventory(Inventory *inventory)
+{
+    this->inv = inventory;
+}
+
+// Interface Functions
 void Employee::searchInventory(std::string albumTitle)
 {
 

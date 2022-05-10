@@ -18,6 +18,9 @@ class Customer : public Interface
         Customer();
         Customer(Inventory *inventory); // parameterized
 
+        // Set inventory function
+        void setInventory(Inventory *inventory);
+
         // Interface functions
         void searchInventory(std::string albumTitle);
         void printInventory();
