@@ -1,9 +1,11 @@
 #include "Employee.h"
 
-Employee::Employee(/* args */){
-
+// Default Constructor
+Employee::Employee(){}
+// Parameterized Constructor
+Employee::Employee(Inventory *inventory)
+{
+    this->inv = inventory;
 }
 
-Employee::~Employee(){
-
-}
+Employee::~Employee(){}

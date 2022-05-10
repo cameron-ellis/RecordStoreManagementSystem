@@ -1,13 +1,14 @@
 #ifndef EMPLOYEE_H
 #define EMPLOYEE_H
-#include "Inventory.h"
+#include "Interface.h"
 
-class Employee// : public Inventory
+class Employee : public Interface
 {
     private:
-        /* data */
+        Inventory *inv;
     public:
-        Employee(/* args */);
+        Employee();
+        Employee(Inventory *inventory);
         ~Employee();
 };
 

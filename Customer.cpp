@@ -1,9 +1,11 @@
 #include "Customer.h"
 
-Customer::Customer(/* args */){
-    
+// Constructor Implementation
+Customer::Customer(){}
+
+Customer::Customer(Inventory *inventory)
+{
+    this->inv = inventory;
 }
 
-Customer::~Customer(){
-
-}
+Customer::~Customer(){}
