@@ -131,6 +131,24 @@ bool Inventory::changeQuantity(std::string album_title,int quantity){
     }
 }
 
+//Parameters: Album Title (string)
+//Will search for the specificed album and return a struct containing a copy of its information.
+//returns an albumInfo_ struct when successful, or an empty albumInfo_ struct when album cannot be found.
+albumInfo_ Inventory::getAlbumInfo(std::string album_title){
+    auto temp = this->Inv_.find(album_title);
+    albumInfo_ infoStruct = {};
+    if(temp != this->Inv_.end()){
+        infoStruct.albumName_ = temp.key();
+        infoStruct.artistName_ = temp->value("artist","false");
+        infoStruct.price_ = temp->value("unit_price",0.00);
+        infoStruct.numUnits_ = temp->value("num_units",0);
+        return infoStruct;
+    }else{
+        std::cout << "Album not found." << std::endl;
+        return infoStruct;
+    }
+}
+
 //Loads inventory. Called in constructor.
 //returns true when successful, or false when it cannot load in inventory. Failing will load an empty json.
 bool Inventory::importInventory(){

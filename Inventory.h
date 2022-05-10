@@ -8,6 +8,13 @@
 
 using json = nlohmann::json;
 
+struct albumInfo_{
+    std::string albumName_;
+    std::string artistName_;
+    float price_;
+    int numUnits_;
+};
+
 class Inventory
 {
     public:
@@ -18,6 +25,7 @@ class Inventory
         bool addToInventory(std::string,std::string,float,int);
         bool deleteFromInventory(std::string);
         bool changeQuantity(std::string,int);
+        albumInfo_ getAlbumInfo(std::string);
         bool importInventory();
         bool exportInventory();
         bool printInventoryItem(nlohmann::detail::iter_impl<nlohmann::basic_json<> >);

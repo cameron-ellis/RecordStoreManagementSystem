@@ -37,6 +37,23 @@ int main()
     
     inv->printInventory();
 
+
+    std::cout << "\nGet Album info:\n" << std::endl;
+
+    albumInfo_ albInfo = inv->getAlbumInfo("albtitle2");
+    std::cout << "Retrieved Album Info albtitle2:\n";
+    std::cout << "Album: " << albInfo.albumName_ << std::endl;
+    std::cout << "Album: " << albInfo.artistName_ << std::endl;
+    std::cout << "Album: " << albInfo.price_ << std::endl;
+    std::cout << "Album: " << albInfo.numUnits_ << std::endl;
+
+    albInfo = inv->getAlbumInfo("albtitle2221");
+    std::cout << "Retrieved Album Info for missing album:\n";
+    std::cout << "Album: " << albInfo.albumName_ << std::endl;
+    std::cout << "Album: " << albInfo.artistName_ << std::endl;
+    std::cout << "Album: " << albInfo.price_ << std::endl;
+    std::cout << "Album: " << albInfo.numUnits_ << std::endl;
+
     inv->deleteInventory();
     inv = nullptr;
     inv2->deleteInventory();
