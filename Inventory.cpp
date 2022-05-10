@@ -79,6 +79,31 @@ void Inventory::deleteFromInventory(std::string albumTitle){
     }
 }
 
+//Parameters: Album Title (string), Amount to change inventory amount (int)
+//Will change the amount of units of the specified album.
+//If not enough units exists, will error and abort function.
+void Inventory::changeQuantity(std::string album_title,int quantity){
+    try{
+        auto temp = this->Inv_.find(album_title);
+        if(temp != this->Inv_.end()){
+            if(temp->value("num_units",0) + quantity >= 0){
+                json jtemp;
+                jtemp[album_title] = { {"artist",temp->value("artist","false")}, {"unit_price",temp->value("unit_price",0.00)}, {"num_units",temp->value("num_units",0) + quantity} };
+                this->Inv_.update(jtemp);
+            }else{
+                std::string errS = "Error: Not enough stock available. No change done. Total stock: ";
+                errS += std::to_string(temp->value("num_units",0));
+                throw std::range_error(errS);
+            }
+        }else{
+            throw "Error: Album not found.";
+        }
+    }
+    catch(const std::range_error& e){
+        std::cout << e.what() << std::endl;
+    }
+}
+
 //Loads inventory. Called in constructor.
 void Inventory::importInventory(){
     std::ifstream f("Inventory.json");

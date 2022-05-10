@@ -22,7 +22,14 @@ int main()
     inv->printInventory();
 
     std::cout << "\nDelete From Inventory:\n" << std::endl;
+
+    
     inv2->deleteFromInventory("DeleteMe");
+    
+    inv->changeQuantity("albtitle1", 2);
+    inv->changeQuantity("albtitle1", -3);
+    inv->changeQuantity("albtitle1", -2);
+    
     inv->printInventory();
 
     inv->deleteInventory();
