@@ -11,8 +11,8 @@ struct shoppingCart
 class Customer : public Interface
 {
     private:
-        Inventory *inv;
-        shoppingCart cart;
+        Inventory *inv = nullptr;
+        shoppingCart *cart = nullptr;
     public:
         // Constructors
         Customer();
