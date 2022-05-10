@@ -5,7 +5,8 @@
 class Employee : public Interface
 {
     private:
-        Inventory *inv;
+        Inventory *inv = nullptr;
+        std::string changelogPat = "InventoryChangeLog.txt";
     public:
         // Constructors
         Employee();
