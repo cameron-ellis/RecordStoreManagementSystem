@@ -1,6 +1,7 @@
 #include "InterfaceCreator.h"
 
 InterfaceCreator::InterfaceCreator(){}
+InterfaceCreator::~InterfaceCreator(){}
 
 // Employee Interface Constructors
 Interface* InterfaceCreator::CreateEmployeeInterface(){
