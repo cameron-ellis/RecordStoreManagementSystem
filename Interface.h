@@ -8,10 +8,15 @@ class Interface
     public:
         virtual void searchInventory(std::string albumTitle) = 0;
         virtual void printInventory() = 0;
-        // virtual void printInventoryItem(???) *not sure what to pass into this
         virtual void addToInventory(std::string albumTitle, std::string Artist, float price, int numUnits) = 0;
         virtual void deleteFromInventory(std::string albumTitle) = 0;
-        virtual void changeQuantity(std::string albumTitle, int quantity) = 0;
+        virtual void addToCart(std::string albumTitle, int quantity) = 0;
+        virtual void deleteFromCart(std::string albumTitle, int quantity) = 0;
+        virtual void editArtist(std::string albumTitle, std::string newArtist) = 0;
+        virtual void editPrice(std::string albumTitle, float newPrice) = 0;
+        virtual void editUnits(std::string albumTitle, int newUnits) = 0;
+        virtual void viewCart() = 0;
+        virtual void purchaseCart() = 0;
         virtual ~Interface() {};
         
 };
@@ -47,5 +52,12 @@ class Interface
         saying the purchase failed so that the customer function could know if the purchase was successful or not.
         Ex Potential Interface:
         Error code return integer --> int Inventory::purchaseItem(std::string albumTitle, int purchaseQuantity);
+    
+    4.) Return function:
+        This function takes in an album title string and a return quantity, it will delete the item out of the purchase for the customer and
+        return that quantity to stock. So all this function needs to be able to do is add to the quantity of a given album title, I will handle the rest
+        in the actual customer return function.
+        Ex Potential Interface:
+        Error code return integer --> int Inventory::returnItem(std::string albumTitle, int returnQuantity);
         
 */
