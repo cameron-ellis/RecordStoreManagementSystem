@@ -39,7 +39,7 @@ int Employee::searchInventory(std::string albumTitle)
     {
         std::cerr << msg << '\n';
     }
-    
+    return 0;
 }
 
 // printInventory Function:
@@ -65,6 +65,7 @@ int Employee::printInventory()
     {
         std::cerr << msg << '\n';
     }
+    return 0;
 }
 
 // addToInventory Function:
@@ -117,6 +118,7 @@ int Employee::addToInventory(std::string albumTitle, std::string artist, float p
     {
         std::cerr << msg << '\n';
     }
+    return 0;
 }
 
 // deleteFromInventory Function:
@@ -135,7 +137,7 @@ int Employee::deleteFromInventory(std::string albumTitle)
         if (this->inv == nullptr)
         {
             throw "Error: Inventory Not Set.";
-            return;
+            return -1;
         }
 
         // If Inventory object is allocated, attempt to add item to inventory
@@ -162,7 +164,7 @@ int Employee::deleteFromInventory(std::string albumTitle)
         }
         else
         {
-            // Exit program upon failure, error text will already be printed by addToInventory function
+            // Exit program upon failure, error text will already be printed by deleteFromInventory function
             return -2;
         }
     }
@@ -170,6 +172,7 @@ int Employee::deleteFromInventory(std::string albumTitle)
     {
         std::cerr << msg << '\n';
     }
+    return 0;
 }
 
 // editArtist Function:
@@ -222,6 +225,7 @@ int Employee::editArtist(std::string albumTitle, std::string newArtist)
     {
         std::cerr << msg << '\n';
     }
+    return 0;
 }
 
 // editPrice Function:
@@ -274,6 +278,7 @@ int Employee::editPrice(std::string albumTitle, float newPrice)
     {
         std::cerr << msg << '\n';
     }
+    return 0;
 }
 
 // editUnits Function:
@@ -326,6 +331,7 @@ int Employee::editUnits(std::string albumTitle, int newUnits)
     {
         std::cerr << msg << '\n';
     }
+    return 0;
 }
 
 // Destructor

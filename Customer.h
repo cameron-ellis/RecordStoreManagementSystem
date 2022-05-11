@@ -24,11 +24,11 @@ class Customer : public Interface
         int purchaseCart();
 
         // Unused Interface Functions
-        int addToInventory(std::string albumTitle, std::string Artist, float price, int numUnits) {};
-        int deleteFromInventory(std::string albumTitle) {};
-        int editArtist(std::string albumTitle, std::string newArtist) {};
-        int editPrice(std::string albumTitle, float newPrice) {};
-        int editUnits(std::string albumTitle, int newUnits) {};
+        int addToInventory(std::string albumTitle, std::string Artist, float price, int numUnits) {return 0;};
+        int deleteFromInventory(std::string albumTitle) {return 0;};
+        int editArtist(std::string albumTitle, std::string newArtist) {return 0;};
+        int editPrice(std::string albumTitle, float newPrice) {return 0;};
+        int editUnits(std::string albumTitle, int newUnits) {return 0;};
 
         // Destructor
         ~Customer();

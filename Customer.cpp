@@ -38,7 +38,7 @@ int Customer::searchInventory(std::string albumTitle)
     {
         std::cerr << msg << '\n';
     }
-    
+    return 0;
 }
 
 // printInventory Function:
@@ -64,6 +64,7 @@ int Customer::printInventory()
     {
         std::cerr << msg << '\n';
     }
+    return 0;
 }
 
 // addToCart Function:
@@ -123,6 +124,7 @@ int Customer::addToCart(std::string albumTitle, int quantity)
     {
         std::cerr << msg << '\n';
     }
+    return 0;
 }
 // deleteFromCart Function:
 // This function takes in a certain album, and a quantity to remove from the cart.
@@ -181,6 +183,7 @@ int Customer::deleteFromCart(std::string albumTitle, int quantity)
     {
         std::cerr << msg << '\n';
     }
+    return 0;
 }
 
 // viewCart Function:
@@ -207,7 +210,7 @@ int Customer::viewCart()
     }
     std::cout << std::endl;
     std::cout << "\tTotal Price: " << totalPrice << std::endl;
-    return;
+    return 0;
 }
 
 // purchaseCart Function:

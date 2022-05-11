@@ -25,10 +25,10 @@ class Employee : public Interface
         int editUnits(std::string albumTitle, int newUnits);
 
         //Unused Interface Functions
-        int addToCart(std::string albumTitle, int quantity){};
-        int deleteFromCart(std::string albumTitle, int quantity){};
-        int viewCart(){};
-        int purchaseCart(){};
+        int addToCart(std::string albumTitle, int quantity){return 0;};
+        int deleteFromCart(std::string albumTitle, int quantity){return 0;};
+        int viewCart(){return 0;};
+        int purchaseCart(){return 0;};
 
         // Destructor
         ~Employee();
