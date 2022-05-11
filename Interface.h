@@ -1,7 +1,10 @@
 #ifndef INTERFACE_H
 #define INTERFACE_H
 #include "Inventory.h"
+#include <fstream>
 #include <vector>
+#include <ctime>
+#include <sstream>
 
 class Interface
 {
