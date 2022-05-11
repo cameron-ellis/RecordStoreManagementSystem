@@ -17,6 +17,5 @@ WORKDIR /src/RecordStoreManagementSystem/build
 RUN apt-get update && apt-get -y install cmake
 RUN cmake ..
 RUN make
-RUN make install
 
 CMD [ "./runSystem" ]
