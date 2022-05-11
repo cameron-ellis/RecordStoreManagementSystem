@@ -14,21 +14,26 @@ void Employee::setInventory(Inventory *inventory)
     this->inv = inventory;
 }
 
-// Interface Functions
+/********** Interface Functions ***********/
+
 // searchInventory Function:
 // searches the inventory object of the Employee interface for the
 // specified album title string. Checks to see if the inventory is allocated first,
 // if it is not then an error is printed out.
-void Employee::searchInventory(std::string albumTitle)
+// Error Codes:
+// -1 -> Inventory Object not allocated or set correctly
+//  0 -> Search successful
+int Employee::searchInventory(std::string albumTitle)
 {
     try
     {
         if (this->inv == nullptr)
         {
             throw "Error: Inventory Not Set.";
-            return;
+            return -1; // bad allocation of Inventory
         }
-        this->inv->searchInventory(albumTitle); 
+        this->inv->searchInventory(albumTitle);
+        return 0; // search performed successful
     }
     catch(const char* msg)
     {
@@ -41,16 +46,20 @@ void Employee::searchInventory(std::string albumTitle)
 // prints the inventory json file to the terminal, checks to see
 // if the inventory is allocated first before trying to access it.
 // If its not allocated an error is printed out.
-void Employee::printInventory()
+// Error Codes:
+// -1 -> Inventory Object not allocated or set correctly
+//  0 -> Print successful
+int Employee::printInventory()
 {
     try
     {
         if (this->inv == nullptr)
         {
             throw "Error: Inventory Not Set.";
-            return;
+            return -1; // bad allocation of Inventory
         }
-        this->inv->printInventory(); 
+        this->inv->printInventory();
+        return 0; // search performed successful
     }
     catch(const char* msg)
     {
@@ -62,7 +71,11 @@ void Employee::printInventory()
 // This function takes in an album title to add to the inventory.
 // Will check to see if addition to inventory was successful, and if so
 // it will output this change to the changeLog txt file.
-void Employee::addToInventory(std::string albumTitle, std::string artist, float price, int numUnits)
+// Error Codes:
+// -1 -> Inventory Object not allocated or set correctly
+// -2 -> Addition unsuccessful
+//  0 -> Addition successful
+int Employee::addToInventory(std::string albumTitle, std::string artist, float price, int numUnits)
 {
     try
     {
@@ -70,7 +83,7 @@ void Employee::addToInventory(std::string albumTitle, std::string artist, float 
         if (this->inv == nullptr)
         {
             throw "Error: Inventory Not Set.";
-            return;
+            return -1;
         }
 
         // If Inventory object is allocated, attempt to add item to inventory
@@ -85,19 +98,19 @@ void Employee::addToInventory(std::string albumTitle, std::string artist, float 
             ss << "Time Stamp: " << timeStamp << std::endl;
             ss << "Action: New Item Added Inventory" << std::endl;
             ss << "Details: " << std::endl;
-            ss << "/t/tAlbum Title: " << albumTitle << " Artist: " << artist << " Price: " << price << " Units Added: " << numUnits << std::endl;
+            ss << "\t\tAlbum Title: " << albumTitle << " Artist: " << artist << " Price: " << price << " Units Added: " << numUnits << std::endl;
             ss << std::endl;
             // Output string stream to changeLog
             std::ofstream output;
             output.open(changelogPat, std::ios::app);
             output << ss.str();
             output.close();
-            return;
+            return 0;
         }
         else
         {
             // Exit program upon failure, error text will already be printed by addToInventory function
-            return;
+            return -2;
         }
     }
     catch(const char* msg)
@@ -110,7 +123,11 @@ void Employee::addToInventory(std::string albumTitle, std::string artist, float 
 // This function is used to delete an item from the inventory given an album title.
 // Will check to see if item can be deleted from the inventory, and if it can, it will
 // output the item information of the deleted item to the changelog txt file.
-void Employee::deleteFromInventory(std::string albumTitle)
+// Error Codes:
+// -1 -> Inventory Object not allocated or set correctly
+// -2 -> Deletion Unsuccessful
+//  0 -> Deletion performed successfully
+int Employee::deleteFromInventory(std::string albumTitle)
 {
     try
     {
@@ -134,19 +151,19 @@ void Employee::deleteFromInventory(std::string albumTitle)
             ss << "Time Stamp: " << timeStamp << std::endl;
             ss << "Action: Deleted Item From Inventory" << std::endl;
             ss << "Details: " << std::endl;
-            ss << "/t/tAlbum Title: " << delItem.albumName_ << " Artist: " << delItem.artistName_ << " Price: " << delItem.price_ << " Units Deleted: " << delItem.numUnits_ << std::endl;
+            ss << "\t\tAlbum Title: " << delItem.albumName_ << " Artist: " << delItem.artistName_ << " Price: " << delItem.price_ << " Units Deleted: " << delItem.numUnits_ << std::endl;
             ss << std::endl;
             // Output string stream to changeLog txt file
             std::ofstream output;
             output.open(changelogPat, std::ios::app);
             output << ss.str();
             output.close();
-            return;
+            return 0;
         }
         else
         {
             // Exit program upon failure, error text will already be printed by addToInventory function
-            return;
+            return -2;
         }
     }
     catch(const char* msg)
@@ -159,7 +176,11 @@ void Employee::deleteFromInventory(std::string albumTitle)
 // This function will allow the user to take in an album title, and a new artist
 // to overwrite the old artist for the album. First checks to see if the album can be found,
 // and if it can, it updates the artist name for the album.
-void Employee::editArtist(std::string albumTitle, std::string newArtist)
+// Error Codes:
+// -1 -> Inventory Object not allocated or set correctly
+// -2 -> Edit Artist unsuccessful
+//  0 -> Edit Artist successful
+int Employee::editArtist(std::string albumTitle, std::string newArtist)
 {
     try
     {
@@ -167,7 +188,7 @@ void Employee::editArtist(std::string albumTitle, std::string newArtist)
         if (this->inv == nullptr)
         {
             throw "Error: Inventory Not Set.";
-            return;
+            return -1;
         }
 
         // If Inventory object is allocated, attempt to add item to inventory
@@ -182,19 +203,19 @@ void Employee::editArtist(std::string albumTitle, std::string newArtist)
             ss << "Time Stamp: " << timeStamp << std::endl;
             ss << "Action: Edit Album Artist" << std::endl;
             ss << "Details: " << std::endl;
-            ss << "/t/tAlbum Title: " << albumTitle << " New Artist: " << newArtist << std::endl;
+            ss << "\t\tAlbum Title: " << albumTitle << " New Artist: " << newArtist << std::endl;
             ss << std::endl;
             // Output string stream to changeLog
             std::ofstream output;
             output.open(changelogPat, std::ios::app);
             output << ss.str();
             output.close();
-            return;
+            return 0;
         }
         else
         {
             // Exit program upon failure, error text will already be printed by addToInventory function
-            return;
+            return -2;
         }
     }
     catch(const char* msg)
@@ -202,7 +223,16 @@ void Employee::editArtist(std::string albumTitle, std::string newArtist)
         std::cerr << msg << '\n';
     }
 }
-void Employee::editPrice(std::string albumTitle, float newPrice)
+
+// editPrice Function:
+// This function will allow the user to take in an album title, and a new price
+// to overwrite the old price for the album. First checks to see if the album can be found,
+// and if it can, it updates the price for the album.
+// Error Codes:
+// -1 -> Inventory Object not allocated or set correctly
+// -2 -> Edit Price unsuccessful
+//  0 -> Edit Price successful
+int Employee::editPrice(std::string albumTitle, float newPrice)
 {
      try
     {
@@ -210,7 +240,7 @@ void Employee::editPrice(std::string albumTitle, float newPrice)
         if (this->inv == nullptr)
         {
             throw "Error: Inventory Not Set.";
-            return;
+            return -1;
         }
 
         // If Inventory object is allocated, attempt to add item to inventory
@@ -225,19 +255,19 @@ void Employee::editPrice(std::string albumTitle, float newPrice)
             ss << "Time Stamp: " << timeStamp << std::endl;
             ss << "Action: Edit Album Price" << std::endl;
             ss << "Details: " << std::endl;
-            ss << "/t/tAlbum Title: " << albumTitle << " New Price: " << newPrice << std::endl;
+            ss << "\t\tAlbum Title: " << albumTitle << " New Price: " << newPrice << std::endl;
             ss << std::endl;
             // Output string stream to changeLog
             std::ofstream output;
             output.open(changelogPat, std::ios::app);
             output << ss.str();
             output.close();
-            return;
+            return 0;
         }
         else
         {
             // Exit program upon failure, error text will already be printed by addToInventory function
-            return;
+            return -2;
         }
     }
     catch(const char* msg)
@@ -245,7 +275,16 @@ void Employee::editPrice(std::string albumTitle, float newPrice)
         std::cerr << msg << '\n';
     }
 }
-void Employee::editUnits(std::string albumTitle, int newUnits)
+
+// editUnits Function:
+// This function will allow the user to take in an album title, and a new unit count
+// to overwrite the old unit count for the album. First checks to see if the album can be found,
+// and if it can, it updates the unit count for the album.
+// Error Codes:
+// -1 -> Inventory Object not allocated or set correctly
+// -2 -> Edit Units unsuccessful
+//  0 -> Edit Units successful
+int Employee::editUnits(std::string albumTitle, int newUnits)
 {
      try
     {
@@ -253,7 +292,7 @@ void Employee::editUnits(std::string albumTitle, int newUnits)
         if (this->inv == nullptr)
         {
             throw "Error: Inventory Not Set.";
-            return;
+            return -1;
         }
 
         // If Inventory object is allocated, attempt to add item to inventory
@@ -268,19 +307,19 @@ void Employee::editUnits(std::string albumTitle, int newUnits)
             ss << "Time Stamp: " << timeStamp << std::endl;
             ss << "Action: Edit Album Artist" << std::endl;
             ss << "Details: " << std::endl;
-            ss << "/t/tAlbum Title: " << albumTitle << " New Unit Count: " << newUnits << std::endl;
+            ss << "\t\tAlbum Title: " << albumTitle << " New Unit Count: " << newUnits << std::endl;
             ss << std::endl;
             // Output string stream to changeLog
             std::ofstream output;
             output.open(changelogPat, std::ios::app);
             output << ss.str();
             output.close();
-            return;
+            return 0;
         }
         else
         {
             // Exit program upon failure, error text will already be printed by addToInventory function
-            return;
+            return -2;
         }
     }
     catch(const char* msg)

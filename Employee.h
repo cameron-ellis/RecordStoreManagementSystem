@@ -16,19 +16,19 @@ class Employee : public Interface
         void setInventory(Inventory *inventory);
         
         // Interface Functions
-        void searchInventory(std::string albumTitle);
-        void printInventory();
-        void addToInventory(std::string albumTitle, std::string Artist, float price, int numUnits);
-        void deleteFromInventory(std::string albumTitle);
-        void editArtist(std::string albumTitle, std::string newArtist);
-        void editPrice(std::string albumTitle, float newPrice);
-        void editUnits(std::string albumTitle, int newUnits);
+        int searchInventory(std::string albumTitle);
+        int printInventory();
+        int addToInventory(std::string albumTitle, std::string Artist, float price, int numUnits);
+        int deleteFromInventory(std::string albumTitle);
+        int editArtist(std::string albumTitle, std::string newArtist);
+        int editPrice(std::string albumTitle, float newPrice);
+        int editUnits(std::string albumTitle, int newUnits);
 
         //Unused Interface Functions
-        void addToCart(std::string albumTitle, int quantity){};
-        void deleteFromCart(std::string albumTitle, int quantity){};
-        void viewCart(){};
-        void purchaseCart(){};
+        int addToCart(std::string albumTitle, int quantity){};
+        int deleteFromCart(std::string albumTitle, int quantity){};
+        int viewCart(){};
+        int purchaseCart(){};
 
         // Destructor
         ~Employee();
