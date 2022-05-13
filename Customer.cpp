@@ -1,5 +1,7 @@
 #include "Customer.h"
 
+#define TAX 0.07
+
 // Default Constructor
 Customer::Customer(){}
 // Parameterized Constructor
@@ -233,14 +235,29 @@ int Customer::purchaseCart()
     std::string receiptName = "Receipt-"+timeStamp+".txt"; // create txt file name for receipt
     std::stringstream outSS; // string stream for output
     float totalPrice = 0.00f; // to keep track of total price of purchase
+    outSS << "      ╔════════════════╗      " << std::endl;     //reciept header
+    outSS << "      ║Spinnin' Records║      " << std::endl;
+    outSS << "      ╚════════════════╝      " << std::endl;
+    outSS << "       411 S 6th Street       " << std::endl;
+    outSS << "      Columbia MO, 65211      " << std::endl;
+    outSS << "______________________________" << std::endl;
     outSS << timeStamp << std::endl;
-    for (int i = 0; i < shoppingCart.size(); i++)
+    outSS << "Purchase (total "<<shoppingCart.size()<<" items):\n"<<std::endl;
+
+    for (int i = 0; i < shoppingCart.size(); i++)       //iterate through cart to list all items
     {
         totalPrice += (shoppingCart[i].numUnits_*shoppingCart[i].price_);
-        outSS << "Album Name: " << shoppingCart[i].albumName_ << " Artist Name: " << shoppingCart[i].artistName_ << " Price: " << shoppingCart[i].price_ << " Units Purchased: " << shoppingCart[i].numUnits_ << std::endl;
+        outSS << shoppingCart[i].albumName_<<"(x"<<shoppingCart[i].numUnits_<<")"<< "\n-" << shoppingCart[i].artistName_ << std::endl;
+        outSS <<std::setw(30)<<std::right<< std::setprecision(2)<<std::fixed <<shoppingCart[i].price_ << std::endl;
     }
-    outSS << std::endl;
-    outSS << "Total Price: " << totalPrice << std::endl;
+    outSS << std::endl; 
+    outSS << "Subtotal:" << std::setprecision(2)<<std::fixed<<std::right<<std::setw(21)<< totalPrice << std::endl;   //use setprecision to ensure cents are printed
+    outSS << "Tax:" << std::setprecision(2)<<std::fixed<<std::right<<std::setw(26)<<(totalPrice*TAX)<<std::endl;
+    outSS << "Total:"<< std::setprecision(2)<<std::fixed<<std::right<<std::setw(24)<< (totalPrice+(totalPrice*TAX))<<std::endl;
+
+    outSS << "______________________________" << std::endl;
+    outSS << "   Thanks for shopping with   \n       Spinnin' Records       \n▼▼▼▼▼▼▼▼▼Check us out▼▼▼▼▼▼▼▼▼\n    www.spinninrecords.com    "<<std::endl;
+
     shoppingCart.clear(); // clears shopping cart of all items
 
     // Open up txt file for receipt and output string stream to it
