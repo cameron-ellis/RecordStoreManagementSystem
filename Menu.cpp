@@ -18,28 +18,28 @@ void Menu::MainMenu()
         userSelect = std::stoi(temp);
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         
-        switch(userSelect){
-            case 1 :
+        switch(userSelect){     //switch to determine user input
+            case 1 :            //if userSelect is 1
                 std::system("clear");
                 std::cout << "Customer User Selected" << std::endl;
                 sleep(2);
                 std::system("clear");
                 this->CustomerMenu();
                 break;
-            case 2 :
+            case 2 :            //if userSelect is 2
                 std::system("clear");
                 std::cout << "Employee User Selected" << std::endl;
                 sleep(2);
                 std::system("clear");
                 this->EmployeeMenu();
                 break;
-            case 3 :
+            case 3 :            //if userSelect is 3
                 std::system("clear");
                 std::cout << "Logged Out" << std::endl;
                 sleep(2);
                 std::system("clear");
                 break;
-            default :
+            default :           //else
                 std::system("clear");
                 std::cout << "Invalid input; please re-enter." << std::endl;
                 sleep(2);
@@ -72,8 +72,9 @@ void Menu::CustomerMenu()
       std::string userSelect;
       std::cout << "Select Action: ";
       std::getline(std::cin, userSelect);
-      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-      if (userSelect == "1") { // Print Inventory Function
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');   
+      //check all menu functions
+      if (userSelect == "1") { // Print Inventory Function      
           std::system("clear");
           std::cout << "Printing Inventory..." << std::endl;
           custInterface->printInventory();
