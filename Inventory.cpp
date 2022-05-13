@@ -13,6 +13,7 @@ Inventory::Inventory(){
 Inventory::~Inventory(){
     std::cout << "Saving Inventory." << std::endl;
     this->exportInventory();
+    instance_ = NULL;
 }
 
 //Function used to delete inventory instances.

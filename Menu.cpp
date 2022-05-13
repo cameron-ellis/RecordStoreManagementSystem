@@ -3,46 +3,48 @@
 /************************ Main Menu Function **************************/
 void Menu::MainMenu()
 {
-    while(true)
+    int userSelect = 0;
+    std::string temp = "";
+    while(userSelect!=3)
     {
-      std::cout << "************** Record Store Inventory System **************" << std::endl;
-      std::cout << "Please Select a User Type (input corresponding number)" << std::endl;
-      std::cout << "\t\t1.) Customer" << std::endl;
-      std::cout << "\t\t2.) Employee" << std::endl;
-      std::cout << "\t\t3.) Logout" << std::endl;
-      std::string userSelect;
-      std::cout << "Select User: ";
-      std::getline(std::cin, userSelect);
-      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-      if (userSelect == "1") {
-          std::system("clear");
-          std::cout << "Customer User Selected" << std::endl;
-          sleep(2);
-          std::system("clear");
-          this->CustomerMenu();
-          break;
-      }
-      else if (userSelect == "2") {
-          std::system("clear");
-          std::cout << "Employee User Selected" << std::endl;
-          sleep(2);
-          std::system("clear");
-          this->EmployeeMenu();
-          break;
-      }
-      else if (userSelect == "3") {
-          std::system("clear");
-          std::cout << "Logged Out" << std::endl;
-          sleep(2);
-          std::system("clear");
-          break;
-      }
-      else {
-          std::system("clear");
-          std::cout << "Invalid input; please re-enter." << std::endl;
-          sleep(2);
-          std::system("clear");
-      }
+        std::cout << "************** Record Store Inventory System **************" << std::endl;
+        std::cout << "Please Select a User Type (input corresponding number)" << std::endl;
+        std::cout << "\t\t1.) Customer" << std::endl;
+        std::cout << "\t\t2.) Employee" << std::endl;
+        std::cout << "\t\t3.) Logout" << std::endl;
+        std::cout << "Select User: ";
+
+        std::getline(std::cin, temp);
+        userSelect = std::stoi(temp);
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        
+        switch(userSelect){
+            case 1 :
+                std::system("clear");
+                std::cout << "Customer User Selected" << std::endl;
+                sleep(2);
+                std::system("clear");
+                this->CustomerMenu();
+                break;
+            case 2 :
+                std::system("clear");
+                std::cout << "Employee User Selected" << std::endl;
+                sleep(2);
+                std::system("clear");
+                this->EmployeeMenu();
+                break;
+            case 3 :
+                std::system("clear");
+                std::cout << "Logged Out" << std::endl;
+                sleep(2);
+                std::system("clear");
+                break;
+            default :
+                std::system("clear");
+                std::cout << "Invalid input; please re-enter." << std::endl;
+                sleep(2);
+                std::system("clear");
+        }
     }
     return;
 }
