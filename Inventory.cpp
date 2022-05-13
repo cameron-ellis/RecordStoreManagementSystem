@@ -227,7 +227,7 @@ bool Inventory::printInventoryItem(nlohmann::detail::iter_impl<nlohmann::basic_j
 //Loads inventory. Called in constructor.
 //returns true when successful, or false when it cannot load in inventory. Failing will load an empty json.
 bool Inventory::importInventory(){
-    std::ifstream f("Inventory.json");
+    std::ifstream f("../Inventory.json");
     if(f){
         f >> this->Inv_;
         return true;
@@ -241,7 +241,7 @@ bool Inventory::importInventory(){
 //returns true when successful, or false when it cannot write out inventory.
 bool Inventory::exportInventory(){
     try{
-        std::ofstream f("Inventory.json");
+        std::ofstream f("../Inventory.json");
         if(f){
             f << std::setw(4) << this->Inv_ << std::endl;
             return true;
