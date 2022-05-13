@@ -215,6 +215,7 @@ bool Inventory::searchInventory(std::string album_title){
         return this->printInventoryItem(temp);
     }else{
         std::cerr << "Inventory is empty." << std::endl;
+        return false;
     }
 }
 
