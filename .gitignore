@@ -33,7 +33,8 @@
 
 # Miscellaneous
 Build/
-Testing/
+Testing/Build
 main
 .vscode
 *.csv
+mainold.txt
