@@ -3,9 +3,9 @@
 /************************ Main Menu Function **************************/
 void Menu::MainMenu()
 {
-    int userSelect = 0;
-    std::string temp = "";
-    while(userSelect!=3)
+    std::string userSelect = "";
+    int selected = 0;
+    while(selected!=3)
     {
         std::cout << "************** Record Store Inventory System **************" << std::endl;
         std::cout << "Please Select a User Type (input corresponding number)" << std::endl;
@@ -14,10 +14,21 @@ void Menu::MainMenu()
         std::cout << "\t\t3.) Logout" << std::endl;
         std::cout << "Select User: ";
 
-        std::getline(std::cin, temp);
-        userSelect = std::stoi(temp);
-        std::cin.clear();
-        switch(userSelect){     //switch to determine user input
+        //Gets the user input and converts it to an int for the switch to use.
+        std::getline(std::cin, userSelect);
+        if(userSelect == "1"){
+            selected = 1;
+        }else if(userSelect == "2"){
+            selected = 2;
+        }else if(userSelect == "3"){
+            selected = 3;
+        }else{
+            selected = 0;
+        }
+
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        
+        switch(selected){     //switch to determine user input
             case 1 :            //if userSelect is 1
                 std::system("clear");
                 std::cout << "Customer User Selected" << std::endl;
