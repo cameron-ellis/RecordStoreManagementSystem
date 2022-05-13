@@ -196,9 +196,13 @@ albumInfo_ Inventory::getAlbumInfo(std::string album_title){
 
 //Will print the contents of the entire inventory.
 void Inventory::printInventory(){
-    for(auto temp = this->Inv_.begin(); temp != this->Inv_.end(); ++temp){
-        this->printInventoryItem(temp);
-        std::cout << "\n";
+    if(this->Inv_.size()>0){
+        for(auto temp = this->Inv_.begin(); temp != this->Inv_.end(); ++temp){
+            this->printInventoryItem(temp);
+            std::cout << "\n";
+        }
+    }else{
+        std::cerr << "Inventory is empty." << std::endl;
     }
 }
 
