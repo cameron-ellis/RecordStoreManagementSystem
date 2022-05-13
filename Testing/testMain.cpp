@@ -212,8 +212,10 @@ int main()
     // Deallocate Memory for Employee and Customer Inventories
     empInv->deleteInventory();
     empInv = nullptr;
+    empInterface->setInventory(nullptr);
     custInv->deleteInventory();
     custInv = nullptr;
+    custInterface->setInventory(nullptr);
     
     // Employee Testing
     std::cout << "Employee Interface Non-allocated Inventory testing" << std::endl;
@@ -252,6 +254,8 @@ int main()
     empInterface = nullptr;
     delete empCrtr;
     empCrtr = nullptr;
+
+    std::cout << "Tests Completed" << std::endl;
     return 0;
 }
 
