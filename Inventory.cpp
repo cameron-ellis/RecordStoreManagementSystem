@@ -55,20 +55,23 @@ bool Inventory::addToInventory(std::string album_title, std::string Artist, floa
 //returns true when successful, or false when it cannot find the album to delete.
 bool Inventory::deleteFromInventory(std::string album_title){
     try{
-        auto temp = this->Inv_.erase(this->Inv_.find(album_title));
-        if(temp!=this->Inv_.end()){
+        auto temp = this->Inv_.contains(album_title);
+        this->Inv_.erase(this->Inv_.find(album_title));
+        
+        if(temp){
             std::cout << "Item \"" << album_title << "\" has been deleted.\n" << std::endl;
             return true;
-        }else if(temp==this->Inv_.end()){
+        }else if(!temp){
             std::string errS = "Could not find item \"";
             errS += album_title + "\".";
-            throw errS;
+            throw std::range_error(errS);
         }else{
-            throw "Error: An unknown error has occured.";
+            std::string errS = "Error: An unknown error has occured.";
+            throw std::range_error(errS);
         }
     }
-    catch(const char* message){
-        std::cerr << message << std::endl;
+    catch(const std::range_error& e){
+        std::cout << e.what() << std::endl;
         return false;
     }
 }
@@ -92,7 +95,8 @@ bool Inventory::changeQuantity(std::string album_title,int quantity){
                 throw std::range_error(errS);
             }
         }else{
-            throw "Error: Album not found.";
+            std::string errS = "Error: Album not found.";
+            throw std::range_error(errS);
         }
     }
     catch(const std::range_error& e){
