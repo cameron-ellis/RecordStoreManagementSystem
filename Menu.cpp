@@ -16,8 +16,7 @@ void Menu::MainMenu()
 
         std::getline(std::cin, temp);
         userSelect = std::stoi(temp);
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        
+        std::cin.clear();
         switch(userSelect){     //switch to determine user input
             case 1 :            //if userSelect is 1
                 std::system("clear");
@@ -72,7 +71,7 @@ void Menu::CustomerMenu()
       std::string userSelect;
       std::cout << "Select Action: ";
       std::getline(std::cin, userSelect);
-      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');   
+      std::cin.clear();   
       //check all menu functions
       if (userSelect == "1") { // Print Inventory Function      
           std::system("clear");
@@ -84,7 +83,7 @@ void Menu::CustomerMenu()
           std::string albumTitle;
           std::cout << "Input Album Name: ";
           std::getline(std::cin, albumTitle);
-          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+          std::cin.clear();
           std::cout << "Searching for Item..." << std::endl;
           custInterface->searchInventory(albumTitle);
       }
@@ -94,21 +93,23 @@ void Menu::CustomerMenu()
           int quantity;
           std::cout << "Input Album Name: ";
           std::getline(std::cin, albumTitle);
-          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+          std::cin.clear();
           while (std::cout << "Input Quantity: " && !(std::cin >> quantity)) {
             std::cin.clear(); //clear bad input flag
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //discard input
             quantity = 0;
             std::cout << "Invalid input quantity; please re-enter.\n";
           }
-          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+          std::cin.clear();
           std::cout << "Adding Item to Cart..." << std::endl;
           int errCode = custInterface->addToCart(albumTitle,quantity);
           if (errCode == 0)
           {
               std::cout << "Album '" << albumTitle << "' added to cart successfully!" << std::endl;
           }
-          sleep(3);
+          std::cin.clear();
+          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+          sleep(2);
           std::system("clear");
       }
       else if (userSelect == "4") { // Delete Item from Cart
@@ -117,21 +118,23 @@ void Menu::CustomerMenu()
           int quantity;
           std::cout << "Input Album Name: ";
           std::getline(std::cin, albumTitle);
-          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+          std::cin.clear();
           while (std::cout << "Input Quantity: " && !(std::cin >> quantity)) {
             std::cin.clear(); //clear bad input flag
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //discard input
             quantity = 0;
             std::cout << "Invalid input quantity; please re-enter.\n";
           }
-          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+          std::cin.clear();
           std::cout << "Deleting Item from Cart..." << std::endl;
           int errCode = custInterface->deleteFromCart(albumTitle,quantity);
           if (errCode == 0)
           {
               std::cout << "Album '" << albumTitle << "' deleted from cart successfully!" << std::endl;
           }
-          sleep(3);
+          std::cin.clear();
+          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+          sleep(2);
           std::system("clear");
       }
       else if (userSelect == "5") { // View Cart
@@ -147,7 +150,7 @@ void Menu::CustomerMenu()
           {
               std::cout << "Cart Purchased Successfully!" << std::endl;
           }
-          sleep(3);
+          sleep(2);
           std::system("clear");
       }
       else if (userSelect == "7") { // Customer User Logout
@@ -167,6 +170,7 @@ void Menu::CustomerMenu()
     // Deallocate Memory for Inventory and Employee Interface
     custInv->deleteInventory();
     custInv = nullptr;
+    custInterface->setInventory(nullptr);
     custCrtr->deleteInterface(custInterface);
     custInterface = nullptr;
     delete custCrtr;
@@ -199,7 +203,7 @@ void Menu::EmployeeMenu()
       std::string userSelect;
       std::cout << "Select Action: ";
       std::getline(std::cin, userSelect);
-      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      std::cin.clear();
       if (userSelect == "1") { // Print Inventory
           std::system("clear");
           std::cout << "Printing Inventory..." << std::endl;
@@ -210,7 +214,7 @@ void Menu::EmployeeMenu()
           std::string albumTitle;
           std::cout << "Input Album Name: ";
           std::getline(std::cin, albumTitle);
-          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+          std::cin.clear();
           std::cout << "Searching for Item..." << std::endl;
           empInterface->searchInventory(albumTitle);
       }
@@ -222,31 +226,33 @@ void Menu::EmployeeMenu()
           int albumUnits;
           std::cout << "Input Album Name: ";
           std::getline(std::cin, albumTitle);
-          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+          std::cin.clear();
           std::cout << "Input Artist Name: ";
           std::getline(std::cin, artistName);
-          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+          std::cin.clear();
           while (std::cout << "Input Album Price: " && !(std::cin >> albumPrice)) {
             std::cin.clear(); //clear bad input flag
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //discard input
             albumPrice = 0.00f;
             std::cout << "Invalid input price; please re-enter.\n";
           }
-          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+          std::cin.clear();
           while (std::cout << "Input Album Units: " && !(std::cin >> albumUnits)) {
             std::cin.clear(); //clear bad input flag
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //discard input
             albumUnits = 0;
             std::cout << "Invalid input units; please re-enter.\n";
           }
-          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+          std::cin.clear();
           std::cout << "Adding Item to Inventory..." << std::endl;
           int errCode = empInterface->addToInventory(albumTitle,artistName,albumPrice,albumUnits);
           if (errCode == 0)
           {
               std::cout << "Album '" << albumTitle << "' added successfully!" << std::endl;
           }
-          sleep(3);
+          std::cin.clear();
+          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+          sleep(2);
           std::system("clear");
       }
       else if (userSelect == "4") { // Delete Item from Inventory
@@ -254,14 +260,14 @@ void Menu::EmployeeMenu()
           std::string albumTitle;
           std::cout << "Input Album Name: ";
           std::getline(std::cin, albumTitle);
-          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+          std::cin.clear();
           std::cout << "Deleting Item..." << std::endl;
           int errCode = empInterface->deleteFromInventory(albumTitle);
           if (errCode == 0)
           {
               std::cout << "Album '" << albumTitle << "' deleted successfully!" << std::endl;
           }
-          sleep(3);
+          sleep(2);
           std::system("clear");
       }
       else if (userSelect == "5") { // Edit Album Artist
@@ -270,17 +276,19 @@ void Menu::EmployeeMenu()
           std::string artistName;
           std::cout << "Input Album Name: ";
           std::getline(std::cin, albumTitle);
-          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+          std::cin.clear();
           std::cout << "Input Artist Name: ";
           std::getline(std::cin, artistName);
-          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+          std::cin.clear();
           std::cout << "Updating Album Artist..." << std::endl;
           int errCode = empInterface->editArtist(albumTitle,artistName);
           if (errCode == 0)
           {
               std::cout << "Album '" << albumTitle << "' artist updated to '" << artistName << "' successfully!" << std::endl;
           }
-          sleep(3);
+          std::cin.clear();
+          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+          sleep(2);
           std::system("clear");
       }
       else if (userSelect == "6") { // Edit Album Price
@@ -289,21 +297,23 @@ void Menu::EmployeeMenu()
           float albumPrice;
           std::cout << "Input Album Name: ";
           std::getline(std::cin, albumTitle);
-          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+          std::cin.clear();
           while (std::cout << "Input Album Price: " && !(std::cin >> albumPrice)) {
             std::cin.clear(); //clear bad input flag
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //discard input
             albumPrice = 0.00f;
             std::cout << "Invalid input price; please re-enter.\n";
           }
-          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+          std::cin.clear();
           std::cout << "Updating Album Artist..." << std::endl;
           int errCode = empInterface->editPrice(albumTitle,albumPrice);
           if (errCode == 0)
           {
               std::cout << "Album '" << albumTitle << "' price updated to '" << albumPrice << "' successfully!" << std::endl;
           }
-          sleep(3);
+          std::cin.clear();
+          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+          sleep(2);
           std::system("clear");
       }
       else if (userSelect == "7") { // Edit Album Units
@@ -312,21 +322,23 @@ void Menu::EmployeeMenu()
           int albumUnits;
           std::cout << "Input Album Name: ";
           std::getline(std::cin, albumTitle);
-          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+          std::cin.clear();
           while (std::cout << "Input Album Units: " && !(std::cin >> albumUnits)) {
             std::cin.clear(); //clear bad input flag
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //discard input
             albumUnits = 0;
             std::cout << "Invalid input price; please re-enter.\n";
           }
-          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+          std::cin.clear();
           std::cout << "Updating Album Artist..." << std::endl;
           int errCode = empInterface->editUnits(albumTitle,albumUnits);
           if (errCode == 0)
           {
               std::cout << "Album '" << albumTitle << "' unit count updated to '" << albumUnits << "' successfully!" << std::endl;
           }
-          sleep(3);
+          std::cin.clear();
+          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+          sleep(2);
           std::system("clear");
       }
       else if (userSelect == "8") { // Employee User Logout
@@ -346,6 +358,7 @@ void Menu::EmployeeMenu()
     // Deallocate Memory for Inventory and Employee Interface
     empInv->deleteInventory();
     empInv = nullptr;
+    empInterface->setInventory(nullptr);
     empCrtr->deleteInterface(empInterface);
     empInterface = nullptr;
     delete empCrtr;
@@ -353,3 +366,5 @@ void Menu::EmployeeMenu()
     std::system("clear");
     return;
 }
+
+// std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
