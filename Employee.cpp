@@ -310,7 +310,7 @@ int Employee::editUnits(std::string albumTitle, int newUnits)
             std::string timeStamp = ctime(&now);
             std::stringstream ss;
             ss << "Time Stamp: " << timeStamp << std::endl;
-            ss << "Action: Edit Album Artist" << std::endl;
+            ss << "Action: Edit Album Units" << std::endl;
             ss << "Details: " << std::endl;
             ss << "\t\tAlbum Title: " << albumTitle << " New Unit Count: " << newUnits << std::endl;
             ss << std::endl;

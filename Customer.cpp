@@ -200,16 +200,16 @@ int Customer::viewCart()
         return 0;
     }
     // If its not empty, print every Item in shoppingCart
-    int totalPrice = 0; // to keep track of total price of purchase
-    std::cout << "\t\t\t\t**********Current Shopping Cart**********" << std::endl;
-    std::cout << "\tAlbum Name:\t\tArtist:\t\tPrice:\t\tUnit(s):" << std::endl;
+    float totalPrice = 0.00f; // to keep track of total price of purchase
+    std::cout << "**********Current Shopping Cart**********" << std::endl;
+    std::cout << "Album Name:\t\tArtist:\t\tPrice:\t\tUnit(s):" << std::endl;
     for (int i = 0; i < shoppingCart.size(); i++)
     {
         totalPrice += (shoppingCart[i].numUnits_*shoppingCart[i].price_);
-        std::cout << "\t" << shoppingCart[i].albumName_ << "\t" << shoppingCart[i].artistName_ << "\t" << shoppingCart[i].price_ << "\t" << shoppingCart[i].numUnits_ << std::endl;
+        std::cout << shoppingCart[i].albumName_ << "\t\t" << shoppingCart[i].artistName_ << "\t\t" << shoppingCart[i].price_ << "\t\t" << shoppingCart[i].numUnits_ << std::endl;
     }
     std::cout << std::endl;
-    std::cout << "\tTotal Price: " << totalPrice << std::endl;
+    std::cout << "Total Price: " << totalPrice << std::endl;
     return 0;
 }
 
@@ -229,15 +229,14 @@ int Customer::purchaseCart()
     // If its not empty, create and output every Item in shoppingCart to string stream
     time_t now = time(0); // get time stamp
     std::string timeStamp = ctime(&now);
-    std::string receiptName = "Receipt-"+timeStamp; // create txt file name for receipt
+    std::string receiptName = "Receipt-"+timeStamp+".txt"; // create txt file name for receipt
     std::stringstream outSS; // string stream for output
-    int totalPrice = 0; // to keep track of total price of purchase
-    outSS << receiptName << std::endl;
-    outSS << "Album Name:\t\t\tArtist:\t\t\tPrice:\t\t\tUnit(s):" << std::endl;
+    float totalPrice = 0.00f; // to keep track of total price of purchase
+    outSS << timeStamp << std::endl;
     for (int i = 0; i < shoppingCart.size(); i++)
     {
         totalPrice += (shoppingCart[i].numUnits_*shoppingCart[i].price_);
-        outSS << shoppingCart[i].albumName_ << "\t" << shoppingCart[i].artistName_ << "\t" << shoppingCart[i].price_ << "\t" << shoppingCart[i].numUnits_ << std::endl;
+        outSS << "Album Name: " << shoppingCart[i].albumName_ << " Artist Name: " << shoppingCart[i].artistName_ << " Price: " << shoppingCart[i].price_ << " Units Purchased: " << shoppingCart[i].numUnits_ << std::endl;
     }
     outSS << std::endl;
     outSS << "Total Price: " << totalPrice << std::endl;
