@@ -218,13 +218,14 @@ int Customer::viewCart()
 // It will effectively remove all items from the shopping cart as well so that a new cart can be started.
 // Error Codes:
 //  0 -> View Cart successful
+// -2 -> Cart is empty
 int Customer::purchaseCart()
 {
     // Check if shopping cart is empty
     if (shoppingCart.empty() == true)
     {
         std::cout << "Shopping Cart is Empty." << std::endl;
-        return 0;
+        return -2;
     } 
     // If its not empty, create and output every Item in shoppingCart to string stream
     time_t now = time(0); // get time stamp
