@@ -61,12 +61,14 @@ int main()
     /* ***** Print and Search Testing on Empty Inventory ***** */
 
     // Print Inventory Function testing (empty Inventory)
+    std::cout << "Print Inventory Function testing (empty Inventory)" << std::endl;
     errCode = empInterface->printInventory(); // return 0 and print out "Inventory is Empty"
     std::cout << errCode << std::endl;
     errCode = custInterface->printInventory(); // return 0 and print out "Inventory is Empty"
     std::cout << errCode << std::endl;
 
     // Search Inventory Function (empty Inventory)
+    std::cout << "Search Inventory Function (empty Inventory)" << std::endl;
     errCode = empInterface->searchInventory("Empty Inventory"); // return 0 and print out "Inventory is Empty"
     std::cout << errCode << std::endl;
     errCode = custInterface->searchInventory("Empty Inventory"); // return 0 and print out "Inventory is Empty"
@@ -75,6 +77,7 @@ int main()
     /* ********* Employee Interface Testing ********* */
 
     // Add function testing
+    std::cout << "Employee Add Function Testing" << std::endl;
     errCode = empInterface->addToInventory(album1,artist1,price1,quantity1); // return 0
     std::cout << errCode << std::endl;
     errCode = empInterface->addToInventory(album2,artist2,price2,quantity2); // return 0
@@ -95,16 +98,19 @@ int main()
     std::cout << errCode << std::endl;
 
     // Print Inventory Function testing (items in Inventory)
+    std::cout << "Employee Print Inventory Function testing (items in Inventory)" << std::endl;
     errCode = empInterface->printInventory(); // return 0 and print Inventory items that were added above
     std::cout << errCode << std::endl;
 
     // Search Inventory Function (items in Inventory)
+    std::cout << "Employee Search Inventory Function (items in Inventory)" << std::endl;
     errCode = empInterface->searchInventory(album1); // return 0 and print out album1 information
     std::cout << errCode << std::endl;
     errCode = empInterface->searchInventory("alsdjflakdfj"); // return 0 and print out "Album not found"
     std::cout << errCode << std::endl;
 
     // Edit Artist Function Testing
+    std::cout << "Employee Edit Artist Function Testing" << std::endl;
     errCode = empInterface->editArtist(album1,"Snoop Dogg"); // return 0
     std::cout << errCode << std::endl;
     errCode = empInterface->editArtist(album3,"The Beatles"); // return 0
@@ -113,6 +119,7 @@ int main()
     std::cout << errCode << std::endl;
 
     // Edit Price Function Testing
+    std::cout << "Employee Edit Price Function Testing" << std::endl;
     errCode = empInterface->editPrice(album1,25.99f); // return 0
     std::cout << errCode << std::endl;
     errCode = empInterface->editPrice(album3,12.99f); // return 0
@@ -121,6 +128,7 @@ int main()
     std::cout << errCode << std::endl;
 
     // Edit Units Function Testing
+    std::cout << "Employee Edit Units Function Testing" << std::endl;
     errCode = empInterface->editUnits(album1,5); // return 0
     std::cout << errCode << std::endl;
     errCode = empInterface->editUnits(album3,4); // return 0
@@ -129,6 +137,7 @@ int main()
     std::cout << errCode << std::endl;
 
     // Delete function testing
+    std::cout << "Employee Delete Function Testing" << std::endl;
     errCode = empInterface->deleteFromInventory(album1); // return 0 test deletion of first item
     std::cout << errCode << std::endl;
     errCode = empInterface->deleteFromInventory(album5); // return 0 test deletion of middle item
@@ -141,16 +150,19 @@ int main()
     /* ********* Customer Interface Testing ********* */
 
     // Print Inventory testing (items in inventory)
+    std::cout << "Customer Print Inventory testing (items in inventory)" << std::endl;
     errCode = custInterface->printInventory();  // return 0 will print all albums in inventory
     std::cout << errCode << std::endl;
 
     // Search Inventory testing (items in inventory)
+    std::cout << "Customer Search Inventory testing (items in inventory)" << std::endl;
     errCode = empInterface->searchInventory(album6); // return 0 and print out album6 information
     std::cout << errCode << std::endl;
     errCode = empInterface->searchInventory("alsdjflakdfj"); // return 0 and print out "Album not found"
     std::cout << errCode << std::endl;
 
     // Add to Cart testing
+    std::cout << "Customer Add to Cart testing" << std::endl;
     errCode = custInterface->addToCart(album4,2);  // return 0
     std::cout << errCode << std::endl;
     errCode = custInterface->addToCart(album2,2);  // return 0
@@ -165,6 +177,7 @@ int main()
     std::cout << errCode << std::endl;
     
     // Delete from Cart testing
+    std::cout << "Customer Delete from Cart testing" << std::endl;
     errCode = custInterface->deleteFromCart(album4,1);  // return 0
     std::cout << errCode << std::endl;
     errCode = custInterface->deleteFromCart(album2,10);  // return -2 not enough album2 in cart to remove
@@ -175,29 +188,37 @@ int main()
     std::cout << errCode << std::endl;
 
     // View Cart Testing (items in cart)
+    std::cout << "Customer View Cart Testing (items in cart)" << std::endl;
     errCode = custInterface->viewCart();  // return 0 print out album2 and album3 unit counts and price
     std::cout << errCode << std::endl;
 
     // Purchase Cart Testing (items in cart)
+    std::cout << "Customer Purchase Cart Testing (items in cart)" << std::endl;
     errCode = custInterface->purchaseCart();  // return 0
     std::cout << errCode << std::endl;
 
     // View Cart testing (no items in cart)
+    std::cout << "Customer View Cart testing (no items in cart)" << std::endl;
     errCode = custInterface->viewCart();  // return 0 prints out that cart is empty
     std::cout << errCode << std::endl;
 
     // Purchase Cart Testing (no items in cart)
+    std::cout << "Customer Purchase Cart Testing (no items in cart)" << std::endl;
     errCode = custInterface->purchaseCart();  // return -2 and says shopping cart is empty
     std::cout << errCode << std::endl;
 
     /******** Non-allocated Inventory Testing ********/
+    std::cout << "Interface Non-allocated Inventory testing" << std::endl;
     // Deallocate Memory for Employee and Customer Inventories
     empInv->deleteInventory();
     empInv = nullptr;
+    empInterface->setInventory(nullptr);
     custInv->deleteInventory();
     custInv = nullptr;
+    custInterface->setInventory(nullptr);
     
     // Employee Testing
+    std::cout << "Employee Interface Non-allocated Inventory testing" << std::endl;
     errCode = empInterface->printInventory(); // return -1
     std::cout << errCode << std::endl;
     errCode = empInterface->searchInventory("Empty Inventory"); // return -1
@@ -214,6 +235,7 @@ int main()
     std::cout << errCode << std::endl;
 
     // Customer Testing
+    std::cout << "Customer Interface Non-allocated Inventory testing" << std::endl;
     errCode = custInterface->printInventory();  // return -1
     std::cout << errCode << std::endl;
     errCode = custInterface->searchInventory("Empty Inventory"); // return -1
@@ -232,6 +254,8 @@ int main()
     empInterface = nullptr;
     delete empCrtr;
     empCrtr = nullptr;
+
+    std::cout << "Tests Completed" << std::endl;
     return 0;
 }
 
