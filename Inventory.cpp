@@ -210,8 +210,12 @@ void Inventory::printInventory(){
 //Parameters: Album title (string).
 //Searches the inventory for the specific album, and prints the contents, if found.
 bool Inventory::searchInventory(std::string album_title){
-    auto temp = this->Inv_.find(album_title);
-    return this->printInventoryItem(temp);
+    if(this->Inv_.size()>0){
+        auto temp = this->Inv_.find(album_title);
+        return this->printInventoryItem(temp);
+    }else{
+        std::cerr << "Inventory is empty." << std::endl;
+    }
 }
 
 //Parameter: json Iterator pointing to an album.
