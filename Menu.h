@@ -12,3 +12,20 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <limits>
+
+
+class Menu
+{
+    private:
+    public:
+        ///// Constructor and Destructor /////
+        Menu(){};
+        ~Menu(){};
+
+        ///// Interface Menus /////
+        void MainMenu();
+        void CustomerMenu();
+        void EmployeeMenu();
+};
+
+#endif
