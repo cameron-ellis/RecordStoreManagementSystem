@@ -36,6 +36,7 @@ Alternatively dockerhub repo with image provided: [Dockerhub](https://hub.docker
   - **Purchasing their cart removes the items in it and outputs a receipt to a time stamped text file**
   - **Can also print and search for items in the Inventory.json**
 ## Testing, Coverage, and Memory Leak Checking:
+Picture of testing output can be found within repo as Testing.jpg
 ## Link to YouTube Video of Demo:
 https://youtu.be/uh0snAX9vr0
 ## Dependencies:
