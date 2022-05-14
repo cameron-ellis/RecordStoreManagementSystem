@@ -30,6 +30,7 @@ int Employee::searchInventory(std::string albumTitle)
         if (this->inv == nullptr)
         {
             throw "Error: Inventory Not Set.";
+            return -1; // bad allocation of Inventory
         }
         this->inv->searchInventory(albumTitle);
         return 0; // search performed successful
@@ -37,8 +38,8 @@ int Employee::searchInventory(std::string albumTitle)
     catch(const char* msg)
     {
         std::cerr << msg << '\n';
-        return -1; // inventory not allocated
     }
+    return 0;
 }
 
 // printInventory Function:
@@ -55,6 +56,7 @@ int Employee::printInventory()
         if (this->inv == nullptr)
         {
             throw "Error: Inventory Not Set.";
+            return -1; // bad allocation of Inventory
         }
         this->inv->printInventory();
         return 0; // search performed successful
@@ -62,8 +64,8 @@ int Employee::printInventory()
     catch(const char* msg)
     {
         std::cerr << msg << '\n';
-        return -1; // inventory not allocated
     }
+    return 0;
 }
 
 // addToInventory Function:
@@ -82,6 +84,7 @@ int Employee::addToInventory(std::string albumTitle, std::string artist, float p
         if (this->inv == nullptr)
         {
             throw "Error: Inventory Not Set.";
+            return -1;
         }
 
         // If Inventory object is allocated, attempt to add item to inventory
@@ -114,8 +117,8 @@ int Employee::addToInventory(std::string albumTitle, std::string artist, float p
     catch(const char* msg)
     {
         std::cerr << msg << '\n';
-        return -1;
     }
+    return 0;
 }
 
 // deleteFromInventory Function:
@@ -134,6 +137,7 @@ int Employee::deleteFromInventory(std::string albumTitle)
         if (this->inv == nullptr)
         {
             throw "Error: Inventory Not Set.";
+            return -1;
         }
 
         // If Inventory object is allocated, attempt to add item to inventory
@@ -167,8 +171,8 @@ int Employee::deleteFromInventory(std::string albumTitle)
     catch(const char* msg)
     {
         std::cerr << msg << '\n';
-        return -1;
     }
+    return 0;
 }
 
 // editArtist Function:
@@ -187,6 +191,7 @@ int Employee::editArtist(std::string albumTitle, std::string newArtist)
         if (this->inv == nullptr)
         {
             throw "Error: Inventory Not Set.";
+            return -1;
         }
 
         // If Inventory object is allocated, attempt to add item to inventory
@@ -219,8 +224,8 @@ int Employee::editArtist(std::string albumTitle, std::string newArtist)
     catch(const char* msg)
     {
         std::cerr << msg << '\n';
-        return -1;
     }
+    return 0;
 }
 
 // editPrice Function:
@@ -239,6 +244,7 @@ int Employee::editPrice(std::string albumTitle, float newPrice)
         if (this->inv == nullptr)
         {
             throw "Error: Inventory Not Set.";
+            return -1;
         }
 
         // If Inventory object is allocated, attempt to add item to inventory
@@ -271,8 +277,8 @@ int Employee::editPrice(std::string albumTitle, float newPrice)
     catch(const char* msg)
     {
         std::cerr << msg << '\n';
-        return -1;
     }
+    return 0;
 }
 
 // editUnits Function:
@@ -291,6 +297,7 @@ int Employee::editUnits(std::string albumTitle, int newUnits)
         if (this->inv == nullptr)
         {
             throw "Error: Inventory Not Set.";
+            return -1;
         }
 
         // If Inventory object is allocated, attempt to add item to inventory
@@ -323,8 +330,8 @@ int Employee::editUnits(std::string albumTitle, int newUnits)
     catch(const char* msg)
     {
         std::cerr << msg << '\n';
-        return -1;
     }
+    return 0;
 }
 
 // Destructor
