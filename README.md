@@ -3,7 +3,7 @@ A terminal based management app specialized for record stores. Has employee and 
 ## Team Members:
 - **Cameron Ellis**
 - **Chandler Tabor**
-- **Corey Haberberger**
+- **Cory Haberberger**
 ## Docker Container Instructions:
 Docker containter can be built using provided Dockerfile
 Alternatively dockerhub repo with image provided: [Dockerhub](https://hub.docker.com/repository/docker/coryhaberberger/record-store-management-system)
