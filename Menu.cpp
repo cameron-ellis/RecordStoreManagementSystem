@@ -297,7 +297,6 @@ void Menu::EmployeeMenu()
               std::cout << "Album '" << albumTitle << "' artist updated to '" << artistName << "' successfully!" << std::endl;
           }
           std::cin.clear();
-          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
           sleep(2);
           std::system("clear");
       }
@@ -376,5 +375,3 @@ void Menu::EmployeeMenu()
     std::system("clear");
     return;
 }
-
-// std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
