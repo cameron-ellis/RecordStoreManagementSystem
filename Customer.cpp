@@ -195,7 +195,7 @@ int Customer::viewCart()
     if (shoppingCart.empty() == true)
     {
         std::cout << "Shopping Cart is Empty." << std::endl;
-        return 0;
+        return -2;
     }
     // If its not empty, print every Item in shoppingCart
     float totalPrice = 0.00f; // to keep track of total price of purchase

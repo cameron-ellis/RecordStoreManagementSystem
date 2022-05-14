@@ -189,13 +189,14 @@ int Customer::deleteFromCart(std::string albumTitle, int quantity)
 // the items and info of their cart at the current moment in time.
 // Error Codes:
 //  0 -> View Cart successful
+// -2 -> View Cart on empty cart
 int Customer::viewCart()
 {
     // Check if shopping cart is empty
     if (shoppingCart.empty() == true)
     {
         std::cout << "Shopping Cart is Empty." << std::endl;
-        return 0;
+        return -2;
     }
     // If its not empty, print every Item in shoppingCart
     float totalPrice = 0.00f; // to keep track of total price of purchase
@@ -215,7 +216,7 @@ int Customer::viewCart()
 // This function will take the current items in the cart, and print the information to a receipt txt file with the time stamp of the purchase.
 // It will effectively remove all items from the shopping cart as well so that a new cart can be started.
 // Error Codes:
-//  0 -> View Cart successful
+//  0 -> Purchase Cart successful
 // -2 -> Cart is empty
 int Customer::purchaseCart()
 {
