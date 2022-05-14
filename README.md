@@ -1,5 +1,9 @@
 # Record Store Management System
 A terminal based management app specialized for record stores. Has employee and customer logins. Uses the library [Json for Modern C++ by nlohmann](https://github.com/nlohmann/json) for dealing with Inventory stock. Built and developed on WSL2 Ubuntu version 20.04, Docker container also built on Ubuntu version 20.04.
+## Team Members:
+- **Cameron Ellis**
+- **Chandler Tabor**
+- **Corey Haberberger**
 ## Docker Container Instructions:
 Docker containter can be built using provided Dockerfile
 Alternatively dockerhub repo with image provided: [Dockerhub](https://hub.docker.com/repository/docker/coryhaberberger/record-store-management-system)
@@ -33,11 +37,6 @@ Alternatively dockerhub repo with image provided: [Dockerhub](https://hub.docker
   - **Can also print and search for items in the Inventory.json**
 ## Testing, Coverage, and Memory Leak Checking:
 ## Link to YouTube Video of Demo:
-
-## Team Members:
-- **Cameron Ellis**
-- **Chandler Tabor**
-- **Corey Haberberger**
 
 ## Dependencies:
 The JSON library can be installed with the following command: 
