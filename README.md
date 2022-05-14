@@ -4,7 +4,6 @@ A terminal based management app specialized for record stores. Has employee and 
 Docker containter can be built using provided Dockerfile
 Alternatively dockerhub repo with image provided: [Dockerhub](https://hub.docker.com/repository/docker/coryhaberberger/record-store-management-system)
 
- - **List item**
 ## Inventory Class Description:
  - **The foundational code that handles the operations on the system inventory.**
  - **Implemented as a singleton so that only one shared inventory can be in exist at a time.**
@@ -12,7 +11,10 @@ Alternatively dockerhub repo with image provided: [Dockerhub](https://hub.docker
  - **Json file operation performed using the external library [Json for Modern C++ by nlohmann]**
 ## Menu Class Description:
 ### Menu Functions:
- - **List item**
+ - **Menu selects between customer and employee interface**
+ - **Employee and customer interface instantiate using singletons**
+ - **Employees have the options of print inventory, search for item, add item to inventory, delete item from inventory, edit album artist, price, and units, and logout.**
+ - **Customers have the options of print inventory, search for item, add item to cart, delete from cart, view cart, checkout cart, and logout.**
 ## Customer and Employee Interface Class Description:
 ### Customer and Employee Interface Functions:
  - **List item**
