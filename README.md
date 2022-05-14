@@ -47,4 +47,6 @@ Alternatively dockerhub repo with image provided: [Dockerhub](https://hub.docker
 - **After the commands above are run, the testing results and the the gcov results will be printed.**
 
 # Docker:
-- **Stuff**
+- Docker containter can be built using provided Dockerfile
+Alternatively dockerhub repo with image provided: [Dockerhub](https://hub.docker.com/repository/docker/coryhaberberger/record-store-management-system)
+Since this is a terminal application, "run interactive" will need to be selected in order to use program with docker.
