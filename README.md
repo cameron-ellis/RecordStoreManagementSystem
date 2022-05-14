@@ -18,11 +18,13 @@ Alternatively dockerhub repo with image provided: [Dockerhub](https://hub.docker
 ## Customer and Employee Interface Class Description:
 ### Customer and Employee Interface Functions:
  - **Created different interface classes for Employees and Customers using factory design pattern**
+#### Employee Interface Functionality:
  - **Employee Interface class has the ability of full control over the Inventory.json**
   - **Can Add and Delete items from the Inventory.json**
   - **Can change the artist, price, and unit counts in the inventory for a given album**
   - **Can print the inventory and search for a specific item in the inventory**
   - **All changes to inventory by Employee reflected in the Change Log text file with each action being time stamped**
+#### Customer Interface Functionality:
  - **Customer Interface has the ability to look for items and put them into a cart for purchase**
   - **Can pick items from Inventory.json and put them into cart container**
   - **Can remove items from their cart before purchase and put them back into the inventory**
