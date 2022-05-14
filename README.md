@@ -37,7 +37,7 @@ Alternatively dockerhub repo with image provided: [Dockerhub](https://hub.docker
   - **Can also print and search for items in the Inventory.json**
 ## Testing, Coverage, and Memory Leak Checking:
 ## Link to YouTube Video of Demo:
-
+https://youtu.be/uh0snAX9vr0
 ## Dependencies:
 The JSON library can be installed with the following command: 
 `apt install nlohmann-json3-dev`
