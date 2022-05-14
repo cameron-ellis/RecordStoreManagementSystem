@@ -28,17 +28,17 @@ Alternatively dockerhub repo with image provided: [Dockerhub](https://hub.docker
 
 ## Dependencies:
 The JSON library can be installed with the following command: 
-'apt install nlohmann-json3-dev'
+`apt install nlohmann-json3-dev`
 This program also uses g++, cmake, gcov, and valgrind.
 
 ## How to run:
 
 in /RecordStoreManagementSystem
-'mkdir build'
-'cd build'
-'cmake ..'
-'make'
-'./runSystem'
+`mkdir Build`
+`cd Build`
+`cmake ..`
+`make`
+`./runSystem`
 
 # Program Usage:
 - **Upon program start, user will be prompted to log in as a Customer or Employee.**
