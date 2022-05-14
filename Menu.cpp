@@ -25,9 +25,8 @@ void Menu::MainMenu()
         }else{
             selected = 0;
         }
-
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         
+        std::cin.clear();
         switch(selected){     //switch to determine user input
             case 1 :            //if userSelect is 1
                 std::system("clear");

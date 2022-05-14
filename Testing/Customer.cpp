@@ -29,7 +29,6 @@ int Customer::searchInventory(std::string albumTitle)
         if (this->inv == nullptr)
         {
             throw "Error: Inventory Not Set.";
-            return -1;
         }
         this->inv->searchInventory(albumTitle);
         return 0;
@@ -37,8 +36,8 @@ int Customer::searchInventory(std::string albumTitle)
     catch(const char* msg)
     {
         std::cerr << msg << '\n';
+        return -1;
     }
-    return 0;
 }
 
 // printInventory Function:
@@ -55,7 +54,6 @@ int Customer::printInventory()
         if (this->inv == nullptr)
         {
             throw "Error: Inventory Not Set.";
-            return -1;
         }
         this->inv->printInventory();
         return 0;
@@ -63,8 +61,8 @@ int Customer::printInventory()
     catch(const char* msg)
     {
         std::cerr << msg << '\n';
+        return -1;
     }
-    return 0;
 }
 
 // addToCart Function:
@@ -83,7 +81,6 @@ int Customer::addToCart(std::string albumTitle, int quantity)
         if (this->inv == nullptr)
         {
             throw "Error: Inventory Not Set.";
-            return -1;
         }
         
         // Check to see if album is already in cart and user is trying to add more
@@ -123,8 +120,8 @@ int Customer::addToCart(std::string albumTitle, int quantity)
     catch(const char* msg)
     {
         std::cerr << msg << '\n';
+        return -1;
     }
-    return 0;
 }
 // deleteFromCart Function:
 // This function takes in a certain album, and a quantity to remove from the cart.
@@ -141,7 +138,6 @@ int Customer::deleteFromCart(std::string albumTitle, int quantity)
         if (this->inv == nullptr)
         {
             throw "Error: Inventory Not Set.";
-            return -1;
         }
         // Check to see if item is in cart to remove
         for (int i = 0; i < shoppingCart.size(); i++)
@@ -182,8 +178,8 @@ int Customer::deleteFromCart(std::string albumTitle, int quantity)
     catch(const char* msg)
     {
         std::cerr << msg << '\n';
+        return -1;
     }
-    return 0;
 }
 
 // viewCart Function:
@@ -230,7 +226,9 @@ int Customer::purchaseCart()
     // If its not empty, create and output every Item in shoppingCart to string stream
     time_t now = time(0); // get time stamp
     std::string timeStamp = ctime(&now);
-    std::string receiptName = "Receipt-"+timeStamp+".txt"; // create txt file name for receipt
+    std::string receipt = "Receipt-";
+    std::string txt = ".txt";
+    std::string receiptName = receipt+timeStamp+txt; // create txt file name for receipt
     std::stringstream outSS; // string stream for output
     float totalPrice = 0.00f; // to keep track of total price of purchase
     outSS << timeStamp << std::endl;

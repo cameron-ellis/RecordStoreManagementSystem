@@ -31,7 +31,6 @@ int Customer::searchInventory(std::string albumTitle)
         if (this->inv == nullptr)
         {
             throw "Error: Inventory Not Set.";
-            return -1;
         }
         this->inv->searchInventory(albumTitle);
         return 0;
@@ -39,8 +38,8 @@ int Customer::searchInventory(std::string albumTitle)
     catch(const char* msg)
     {
         std::cerr << msg << '\n';
+        return -1;
     }
-    return 0;
 }
 
 // printInventory Function:
@@ -57,7 +56,6 @@ int Customer::printInventory()
         if (this->inv == nullptr)
         {
             throw "Error: Inventory Not Set.";
-            return -1;
         }
         this->inv->printInventory();
         return 0;
@@ -65,8 +63,8 @@ int Customer::printInventory()
     catch(const char* msg)
     {
         std::cerr << msg << '\n';
+        return -1;
     }
-    return 0;
 }
 
 // addToCart Function:
@@ -85,11 +83,10 @@ int Customer::addToCart(std::string albumTitle, int quantity)
         if (this->inv == nullptr)
         {
             throw "Error: Inventory Not Set.";
-            return -1;
         }
         
         // Check to see if album is already in cart and user is trying to add more
-        for (int i = 0; i < shoppingCart.size(); i++)
+        for (long unsigned int i = 0; i < shoppingCart.size(); i++)
         {
             if (shoppingCart[i].albumName_ == albumTitle)
             {
@@ -125,8 +122,8 @@ int Customer::addToCart(std::string albumTitle, int quantity)
     catch(const char* msg)
     {
         std::cerr << msg << '\n';
+        return -1;
     }
-    return 0;
 }
 // deleteFromCart Function:
 // This function takes in a certain album, and a quantity to remove from the cart.
@@ -143,10 +140,9 @@ int Customer::deleteFromCart(std::string albumTitle, int quantity)
         if (this->inv == nullptr)
         {
             throw "Error: Inventory Not Set.";
-            return -1;
         }
         // Check to see if item is in cart to remove
-        for (int i = 0; i < shoppingCart.size(); i++)
+        for (long unsigned int i = 0; i < shoppingCart.size(); i++)
         {
             // If album is found, there are multiple remove conditions
             if (shoppingCart[i].albumName_ == albumTitle)
@@ -184,8 +180,8 @@ int Customer::deleteFromCart(std::string albumTitle, int quantity)
     catch(const char* msg)
     {
         std::cerr << msg << '\n';
+        return -1;
     }
-    return 0;
 }
 
 // viewCart Function:
@@ -205,7 +201,7 @@ int Customer::viewCart()
     float totalPrice = 0.00f; // to keep track of total price of purchase
     std::cout << "**********Current Shopping Cart**********" << std::endl;
     std::cout << "Album Name:\t\tArtist:\t\tPrice:\t\tUnit(s):" << std::endl;
-    for (int i = 0; i < shoppingCart.size(); i++)
+    for (long unsigned int i = 0; i < shoppingCart.size(); i++)
     {
         totalPrice += (shoppingCart[i].numUnits_*shoppingCart[i].price_);
         std::cout << shoppingCart[i].albumName_ << "\t\t" << shoppingCart[i].artistName_ << "\t\t" << shoppingCart[i].price_ << "\t\t" << shoppingCart[i].numUnits_ << std::endl;
@@ -244,7 +240,7 @@ int Customer::purchaseCart()
     outSS << timeStamp << std::endl;
     outSS << "Purchase (total "<<shoppingCart.size()<<" items):\n"<<std::endl;
 
-    for (int i = 0; i < shoppingCart.size(); i++)       //iterate through cart to list all items
+    for (long unsigned int i = 0; i < shoppingCart.size(); i++)       //iterate through cart to list all items
     {
         totalPrice += (shoppingCart[i].numUnits_*shoppingCart[i].price_);
         outSS << shoppingCart[i].albumName_<<"(x"<<shoppingCart[i].numUnits_<<")"<< "\n-" << shoppingCart[i].artistName_ << std::endl;
