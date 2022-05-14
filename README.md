@@ -8,7 +8,7 @@ Alternatively dockerhub repo with image provided: [Dockerhub](https://hub.docker
  - **The foundational code that handles the operations on the system inventory.**
  - **Implemented as a singleton so that only one shared inventory can be in exist at a time.**
  - **Inventory file works using Inventory.json to first load in the inventory. When the inventory is destroyed it exports the current inventory to the same file.**
- - **Json file operation performed using the external library [Json for Modern C++ by nlohmann]**
+ - **Json file operation performed using the external library Json for Modern C++ by nlohmann**
 ## Menu Class Description:
 ### Menu Functions:
  - **Menu selects between customer and employee interface**
@@ -17,19 +17,30 @@ Alternatively dockerhub repo with image provided: [Dockerhub](https://hub.docker
  - **Customers have the options of print inventory, search for item, add item to cart, delete from cart, view cart, checkout cart, and logout.**
 ## Customer and Employee Interface Class Description:
 ### Customer and Employee Interface Functions:
- - **List item**
+ - **Created different interface classes for Employees and Customers using factory design pattern**
+ - **Employee Interface class has the ability of full control over the Inventory.json**
+  - **Can Add and Delete items from the Inventory.json**
+  - **Can change the artist, price, and unit counts in the inventory for a given album**
+  - **Can print the inventory and search for a specific item in the inventory**
+  - **All changes to inventory by Employee reflected in the Change Log text file with each action being time stamped**
+ - **Customer Interface has the ability to look for items and put them into a cart for purchase**
+  - **Can pick items from Inventory.json and put them into cart container**
+  - **Can remove items from their cart before purchase and put them back into the inventory**
+  - **Can view their cart before purchase**
+  - **Purchasing their cart removes the items in it and outputs a receipt to a time stamped text file**
+  - **Can also print and search for items in the Inventory.json**
 ## Testing, Coverage, and Memory Leak Checking:
 ## Link to YouTube Video of Demo:
 
 ## Team Members:
-- **Cameron**
+- **Cameron Ellis**
 - **Chandler Tabor**
-- **Cory**
+- **Corey Haberberger**
 
 ## Dependencies:
 The JSON library can be installed with the following command: 
 `apt install nlohmann-json3-dev`
-This program also uses g++, cmake, gcov, and valgrind.
+This program is specifically for Ubuntu 20.04 and also uses g++, cmake, gcov, and valgrind.
 
 ## How to run:
 
