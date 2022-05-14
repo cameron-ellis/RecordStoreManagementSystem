@@ -18,7 +18,7 @@ clean :
 
 .PHONY : run
 run:
-	./$(TARGET)
+	valgrind ./$(TARGET)
 
 .PHONE : gcov
 gcov:
